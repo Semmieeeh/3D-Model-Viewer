@@ -99,21 +99,29 @@ public class CameraMovement : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            rotationVelocity.x = Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
-            rotationVelocity.y = -Input.GetAxis("Mouse Y") * rotationSpeed * Time.deltaTime;
+            float mouseX = Input.GetAxis("Mouse X");
+            float mouseY = Input.GetAxis("Mouse Y");
+
+            // Store raw input scaled by rotationSpeed (degrees per second)
+            rotationVelocity.x = mouseX * rotationSpeed;
+            rotationVelocity.y = -mouseY * rotationSpeed;
         }
 
-        pivot.Rotate(Vector3.up, rotationVelocity.x, Space.World);
+        // Apply yaw (left/right)
+        pivot.Rotate(Vector3.up, rotationVelocity.x * Time.deltaTime, Space.World);
 
-        currentXRotation += rotationVelocity.y;
+        // Apply pitch (up/down)
+        currentXRotation += rotationVelocity.y * Time.deltaTime;
         currentXRotation = Mathf.Clamp(currentXRotation, -90f, 90f);
 
         Vector3 euler = pivot.localEulerAngles;
         euler.x = currentXRotation;
         pivot.localEulerAngles = euler;
 
+        // Smoothly reduce rotation velocity toward zero
         rotationVelocity = Vector2.Lerp(rotationVelocity, Vector2.zero, rotationDamping * Time.deltaTime);
     }
+
     #endregion
 
     #region Pan
