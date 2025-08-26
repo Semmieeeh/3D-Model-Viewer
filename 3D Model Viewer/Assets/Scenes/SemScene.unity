@@ -728,7 +728,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pivot: {fileID: 677087958}
-  rotationSpeed: 300
+  rotationSpeed: 500
   rotationDamping: 5
   panSpeed: 0.01
   panDamping: 12
