@@ -5,8 +5,8 @@ public class UIHandler : MonoBehaviour
     private int _selectedModel;
     [SerializeField] private GameObject[] _allModels;
  
+    [SerializeField] private GameObject _currentActivePrefab;
     [SerializeField] private GameObject _currentActiveModel;
-
     [SerializeField] private Material _claymaterial;
     [SerializeField] private Material _unlit;
     [SerializeField] private Material _lit;
@@ -26,14 +26,10 @@ public class UIHandler : MonoBehaviour
 
         
         _selectedModel = PlayerPrefs.GetInt("SelectedImageIndex");
-        _currentActiveModel = _allModels[_selectedModel].gameObject;
-        foreach (GameObject model in _allModels)
-        {
-            GameObject spawnedOBJ = Instantiate(model, Vector3.zero,model.transform.rotation);
+        _currentActivePrefab = _allModels[_selectedModel].gameObject;
 
-            spawnedOBJ.SetActive(false);
-
-        }
+        _currentActiveModel = Instantiate(_currentActivePrefab);
+        
     }
 
    public void SetMaterial( Shader shader, bool isLit, Color color)
@@ -66,5 +62,10 @@ public class UIHandler : MonoBehaviour
             return;
         }
         SetMaterial(unlitShader ,false, Color.white);
+    }
+
+    public GameObject GetCurrentActiveModel()
+    {
+        return _currentActiveModel;
     }
 }

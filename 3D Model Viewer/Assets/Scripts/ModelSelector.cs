@@ -78,7 +78,7 @@ public class ModelSelector : MonoBehaviour
             PlayerPrefs.SetInt("SelectedImageIndex", selectedIndex);
 
             // laad de volgende scene
-            SceneManager.LoadScene("NextSceneName");
+            SceneManager.LoadScene(1);
         }
     }
 }
