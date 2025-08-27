@@ -56,14 +56,15 @@ public class CameraMovement : MonoBehaviour
             return;
         }
 
-        HandleResetInput();
-        HandleRotation();
-        HandlePan();
-        HandleZoom();
+        
+        Rotate();
+        Pan();
+        Zoom();
+        Reset();
     }
 
     #region Reset
-    private void HandleResetInput()
+    private void Reset()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -105,7 +106,7 @@ public class CameraMovement : MonoBehaviour
     #region Rotation
     float moveX;
     float moveY;
-    private void HandleRotation()
+    private void Rotate()
     {
         moveX = 0f;
         moveY = 0f;
@@ -167,7 +168,7 @@ public class CameraMovement : MonoBehaviour
     #endregion
 
     #region Pan
-    private void HandlePan()
+    private void Pan()
     {
         if (Input.GetMouseButton(1) || Input.GetMouseButton(2))
         {
@@ -197,7 +198,7 @@ public class CameraMovement : MonoBehaviour
     #endregion
 
     #region Zoom
-    private void HandleZoom()
+    private void Zoom()
     {
         float scroll = Input.GetAxis("Mouse ScrollWheel");
 
