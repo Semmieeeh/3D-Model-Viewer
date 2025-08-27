@@ -5,10 +5,11 @@ public class ModelManager : MonoBehaviour
     [SerializeField] private GameObject previousModel;
     private void Start()
     {
-        
+       LoadModel(UIHandler.Instance.GetModel());
     }
     public void LoadModel(GameObject model)
     {
+        
         if (previousModel)
         {
             previousModel.SetActive(false);
