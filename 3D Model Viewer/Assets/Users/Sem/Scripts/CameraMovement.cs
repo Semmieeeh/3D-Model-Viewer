@@ -136,7 +136,7 @@ public class CameraMovement : MonoBehaviour
             if (arrowPressed)
             {
                 // grow multiplier by 20% per second
-                if(rotationMultiplier <100)
+                if(rotationMultiplier <25)
                 {
                     rotationMultiplier *= 1f + (0.5f * Time.deltaTime);
                 }

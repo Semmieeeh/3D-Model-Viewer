@@ -8,6 +8,12 @@ public class CursorBehaviour : MonoBehaviour
     public Sprite pointerSprite;
     public Sprite openHandSprite;
     public Sprite grabbingHandSprite;
+    private Vector3 lastMousePosition;
+    private float targetRotation = 0f;
+    private float currentRotation = 0f;
+    private float rotationSpeed = 20f;
+    private float maxRotation = 25f;
+    private float movementThreshold = 2f;
 
     private Image image;
     void Start()
@@ -25,7 +31,7 @@ public class CursorBehaviour : MonoBehaviour
     {
         // Make the cursor follow the mouse
         transform.position = Input.mousePosition;
-
+        HandleRotation();
         // Check for mouse clicks
         if (Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2))
         {
@@ -59,18 +65,10 @@ public class CursorBehaviour : MonoBehaviour
         {
             image.sprite = openHandSprite;
         }
-        HandleRotation();
+        
 
 
     }
-
-
-    private Vector3 lastMousePosition;
-    private float targetRotation = 0f;
-    private float currentRotation = 0f;
-    private float rotationSpeed = 20f;
-    private float maxRotation = 25f; 
-    private float movementThreshold = 2f;
 
     void HandleRotation()
     {
