@@ -3,16 +3,18 @@ using UnityEngine.UI;
 using UnityEngine.Animations;
 public class Viewer_Button_Swap : MonoBehaviour
 {
-    public GameObject uIElement;
+    public GameObject button;
     public Animation uIElementAni;
     public Sprite open;
     public AnimationClip openAni;
     public Sprite close;
     public AnimationClip closeAni;
     private Image curImage;
+    public bool uIActive;
     void Start()
     {
-        curImage= GetComponent<Image>();
+        curImage = button.GetComponent<Image>();
+        uIActive = false;
     }
     void Update()
     {
@@ -20,23 +22,24 @@ public class Viewer_Button_Swap : MonoBehaviour
     }
 
     public void ButtonSwap () {
-        if (uIElement.activeSelf) {
+        if (uIActive == true) {
             uIElementAni.clip = closeAni;
             uIElementAni.Play();
             curImage.sprite = open;
-            Debug.Log ("Uit");
+            uIActive = false;
         }
-        else {
+        else if (uIActive == false) {
             uIElementAni.clip = openAni;
-            uIElement.SetActive(true);
+            uIElementAni.Play();
             curImage.sprite = close;
-            Debug.Log ("Aan");
-        }
-
-        
+            uIActive = true;
+        }       
     }
-    public void Close () {
 
-        uIElement.SetActive(false);
+    public void ButtonActif () {
+        button.GetComponent<Button>().enabled = true;
+    }
+    public void ButtonInActif () {
+        button.GetComponent<Button> ().enabled = false;
     }
 }
