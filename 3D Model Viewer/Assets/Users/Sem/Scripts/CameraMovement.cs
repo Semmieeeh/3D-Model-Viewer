@@ -56,7 +56,6 @@ public class CameraMovement : MonoBehaviour
             return;
         }
 
-        
         Rotate();
         Pan();
         Zoom();
@@ -104,12 +103,10 @@ public class CameraMovement : MonoBehaviour
     #endregion
 
     #region Rotation
-    float moveX;
-    float moveY;
     private void Rotate()
     {
-        moveX = 0f;
-        moveY = 0f;
+        float moveX = 0f;
+        float moveY = 0f;
 
         if (Input.GetMouseButton(0))
         {
@@ -128,18 +125,24 @@ public class CameraMovement : MonoBehaviour
 
             if (!Input.GetKey(KeyCode.LeftShift))
             {
-                if (Input.GetKey(KeyCode.LeftArrow)) { moveX = 3f * Time.deltaTime; arrowPressed = true; }
-                if (Input.GetKey(KeyCode.RightArrow)) { moveX = -3f * Time.deltaTime; arrowPressed = true; }
-                if (Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.LeftControl)) { moveY = 3f * Time.deltaTime; arrowPressed = true; }
-                if (Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.LeftControl)) { moveY = -3f * Time.deltaTime; arrowPressed = true; }
+                float horizontal = Input.GetAxisRaw("Horizontal");
+                float vertical = Input.GetAxisRaw("Vertical");
+
+                if (Input.GetKey(KeyCode.LeftControl))
+                    vertical = 0f;
+
+                arrowPressed = horizontal != 0f || vertical != 0f;
+
+                moveX = -horizontal * 3f * Time.deltaTime;
+                moveY = vertical * 3f * Time.deltaTime;
             }
 
             if (arrowPressed)
             {
-                // grow multiplier by 20% per second
+                // compounding grow multiplier
                 if(rotationMultiplier <25)
                 {
-                    rotationMultiplier *= 1f + (0.5f * Time.deltaTime);
+                    rotationMultiplier *= 1f + (1f * Time.deltaTime);
                 }
                 
                 
@@ -180,10 +183,8 @@ public class CameraMovement : MonoBehaviour
         else if(Input.GetKey(KeyCode.LeftShift))
         {
             //  Arrow key input
-            if (Input.GetKey(KeyCode.LeftArrow)) moveX = -100f * Time.deltaTime;
-            if (Input.GetKey(KeyCode.RightArrow)) moveX = 100f * Time.deltaTime;
-            if (Input.GetKey(KeyCode.UpArrow)) moveY = 100f * Time.deltaTime;
-            if (Input.GetKey(KeyCode.DownArrow)) moveY = -100f * Time.deltaTime;
+            float moveX = Input.GetAxisRaw("Horizontal") * 100f * Time.deltaTime;
+            float moveY = Input.GetAxisRaw("Vertical") * 100f * Time.deltaTime;
 
             if (moveX != 0f || moveY != 0f)
             {
@@ -204,11 +205,7 @@ public class CameraMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftControl))
         {
-            bool up = Input.GetKey(KeyCode.UpArrow);
-            bool down = Input.GetKey(KeyCode.DownArrow);
-
-            if (up && !down) scroll += 1f * Time.deltaTime;
-            else if (down && !up) scroll -= 1f * Time.deltaTime;
+             scroll = Input.GetAxisRaw("Vertical") * Time.deltaTime;
         }
 
         if (scroll != 0f)

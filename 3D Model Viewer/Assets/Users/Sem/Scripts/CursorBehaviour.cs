@@ -19,7 +19,7 @@ public class CursorBehaviour : MonoBehaviour
     void Start()
     {
         Cursor.visible = false;
-        // Add a SpriteRenderer to this GameObject if it doesn't exist
+        // Add an image to this GameObject if it doesn't exist
         image = GetComponent<Image>();
         if (image == null)
         {
@@ -65,8 +65,6 @@ public class CursorBehaviour : MonoBehaviour
         {
             image.sprite = openHandSprite;
         }
-        
-
 
     }
 
@@ -82,7 +80,6 @@ public class CursorBehaviour : MonoBehaviour
         }
         else
         {
-            // If under threshold, smoothly return to 0
             targetRotation = 0f;
         }
 
