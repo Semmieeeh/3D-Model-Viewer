@@ -77,10 +77,8 @@ public class ModelSelector : MonoBehaviour
             int selectedIndex = System.Array.IndexOf(imageButtons, selectedImageButton);
             PlayerPrefs.SetInt("SelectedImageIndex", selectedIndex);
 
-
-            
             // laad de volgende scene
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene("NextSceneName");
         }
     }
 }
