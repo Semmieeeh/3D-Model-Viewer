@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CameraMovement : MonoBehaviour
 {
@@ -33,13 +34,16 @@ public class CameraMovement : MonoBehaviour
     private float resetTimer = 0f;
     private Vector3 resetStartPivotPos;
     private Quaternion resetStartPivotRot;
+    private float resetStartZoom;
+    private float startZoom;
+    private float rotationMultiplier = 1f;
 
     void Start()
     {
         // determine startposition for reset
         startPivotPos = pivot.position;
         startPivotRot = pivot.rotation;
-
+        startZoom = transform.localPosition.magnitude;
         currentXRotation = pivot.localEulerAngles.x;
         if (currentXRotation > 180f) currentXRotation -= 360f;
     }
@@ -68,7 +72,7 @@ public class CameraMovement : MonoBehaviour
 
             resetStartPivotPos = pivot.position;
             resetStartPivotRot = pivot.rotation;
-
+            resetStartZoom = transform.localPosition.magnitude; // capture zoom start
 
             rotationVelocity = Vector2.zero;
             panVelocity = Vector2.zero;
@@ -85,6 +89,10 @@ public class CameraMovement : MonoBehaviour
         pivot.position = Vector3.Lerp(resetStartPivotPos, startPivotPos, smoothT);
         pivot.rotation = Quaternion.Slerp(resetStartPivotRot, startPivotRot, smoothT);
 
+        // Interpolate zoom
+        float currentZoom = Mathf.Lerp(resetStartZoom, startZoom, smoothT);
+        transform.localPosition = transform.localPosition.normalized * currentZoom;
+
         if (t >= 1f)
         {
             resetting = false;
@@ -95,22 +103,57 @@ public class CameraMovement : MonoBehaviour
     #endregion
 
     #region Rotation
+    float moveX;
+    float moveY;
     private void HandleRotation()
     {
+        moveX = 0f;
+        moveY = 0f;
+
         if (Input.GetMouseButton(0))
         {
             float mouseX = Input.GetAxis("Mouse X");
             float mouseY = Input.GetAxis("Mouse Y");
 
-            // Store raw input scaled by rotationSpeed (degrees per second)
             rotationVelocity.x = mouseX * rotationSpeed;
             rotationVelocity.y = -mouseY * rotationSpeed;
+
+            // reset accel when mouse is used
+            rotationMultiplier = 1f;
+        }
+        else
+        {
+            bool arrowPressed = false;
+
+            if (!Input.GetKey(KeyCode.LeftShift))
+            {
+                if (Input.GetKey(KeyCode.LeftArrow)) { moveX = 3f * Time.deltaTime; arrowPressed = true; }
+                if (Input.GetKey(KeyCode.RightArrow)) { moveX = -3f * Time.deltaTime; arrowPressed = true; }
+                if (Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.LeftControl)) { moveY = 3f * Time.deltaTime; arrowPressed = true; }
+                if (Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.LeftControl)) { moveY = -3f * Time.deltaTime; arrowPressed = true; }
+            }
+
+            if (arrowPressed)
+            {
+                // grow multiplier by 20% per second
+                if(rotationMultiplier <100)
+                {
+                    rotationMultiplier *= 1f + (0.5f * Time.deltaTime);
+                }
+                
+                
+                Debug.Log(rotationMultiplier);
+                rotationVelocity.x = moveX * rotationSpeed * rotationMultiplier;
+                rotationVelocity.y = moveY * rotationSpeed * rotationMultiplier;
+            }
+            else
+            {
+                rotationMultiplier = 1f;
+            }
         }
 
-        // Apply yaw (left/right)
         pivot.Rotate(Vector3.up, rotationVelocity.x * Time.deltaTime, Space.World);
 
-        // Apply pitch (up/down)
         currentXRotation += rotationVelocity.y * Time.deltaTime;
         currentXRotation = Mathf.Clamp(currentXRotation, -90f, 90f);
 
@@ -118,7 +161,6 @@ public class CameraMovement : MonoBehaviour
         euler.x = currentXRotation;
         pivot.localEulerAngles = euler;
 
-        // Smoothly reduce rotation velocity toward zero
         rotationVelocity = Vector2.Lerp(rotationVelocity, Vector2.zero, rotationDamping * Time.deltaTime);
     }
 
@@ -134,6 +176,20 @@ public class CameraMovement : MonoBehaviour
             panVelocity.x = Input.GetAxis("Mouse X") * panSpeed * transform.localPosition.z * distance;
             panVelocity.y = Input.GetAxis("Mouse Y") * panSpeed * transform.localPosition.z * distance;
         }
+        else if(Input.GetKey(KeyCode.LeftShift))
+        {
+            //  Arrow key input
+            if (Input.GetKey(KeyCode.LeftArrow)) moveX = -100f * Time.deltaTime;
+            if (Input.GetKey(KeyCode.RightArrow)) moveX = 100f * Time.deltaTime;
+            if (Input.GetKey(KeyCode.UpArrow)) moveY = 100f * Time.deltaTime;
+            if (Input.GetKey(KeyCode.DownArrow)) moveY = -100f * Time.deltaTime;
+
+            if (moveX != 0f || moveY != 0f)
+            {
+                panVelocity.x = moveX * panSpeed;
+                panVelocity.y = moveY * panSpeed;
+            }
+        }
 
         pivot.Translate(panVelocity.x, panVelocity.y, 0, Space.Self);
         panVelocity = Vector2.Lerp(panVelocity, Vector2.zero, panDamping * Time.deltaTime);
@@ -144,6 +200,16 @@ public class CameraMovement : MonoBehaviour
     private void HandleZoom()
     {
         float scroll = Input.GetAxis("Mouse ScrollWheel");
+
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            bool up = Input.GetKey(KeyCode.UpArrow);
+            bool down = Input.GetKey(KeyCode.DownArrow);
+
+            if (up && !down) scroll += 1f * Time.deltaTime;
+            else if (down && !up) scroll -= 1f * Time.deltaTime;
+        }
+
         if (scroll != 0f)
         {
             Vector3 dir = transform.localPosition.normalized;

@@ -70,7 +70,7 @@ public class CursorBehaviour : MonoBehaviour
     private float currentRotation = 0f;
     private float rotationSpeed = 20f;
     private float maxRotation = 25f; 
-    private float movementThreshold = 3f;
+    private float movementThreshold = 2f;
 
     void HandleRotation()
     {
