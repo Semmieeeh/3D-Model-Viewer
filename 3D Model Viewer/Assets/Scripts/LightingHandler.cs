@@ -45,6 +45,8 @@ public class LightingHandler : MonoBehaviour
 
 
     [SerializeField] private Material _skyboxMaterial;
+
+    [SerializeField] private Animator _animatorButtonDay;
     private void Start()
     {
 
@@ -72,10 +74,9 @@ public class LightingHandler : MonoBehaviour
             _pivotPoint = UIHandler.Instance.GetModel().transform;
         }
 
-        if (Input.GetKeyDown((KeyCode.Space)) && !_isTransitioning)
+        if (Input.GetKeyDown((KeyCode.F)) && !_isTransitioning)
         {
             SwitchDayNightMode();
-            Debug.Log("ork");
         }
 
         bool isEKeyPressed = Input.GetKey(KeyCode.E);
@@ -109,6 +110,7 @@ public class LightingHandler : MonoBehaviour
         _turnAroundCoroutine = null;
 
     }
+    #region SwitchLights
     private IEnumerator TransisionLight()
     {
 
@@ -145,17 +147,38 @@ public class LightingHandler : MonoBehaviour
         _lightSource.intensity = endIntensity;
         _isTransitioning = false;
     }
+    #endregion
 
-   
+    
+
     private void SwitchDayNightMode()
     {
+       
+
         if (!_isTransitioning)
         {
             _isDay = !_isDay;
             StartCoroutine(TransisionLight());
         }
-        
-        //update button
+
+
+        if (_animatorButtonDay != null)
+        {
+            if (!_isDay)
+            {
+                _animatorButtonDay.speed = 1f;
+                _animatorButtonDay.Play("SwitchDayButton", 0, 0f);
+            }
+            else
+            {
+                _animatorButtonDay.speed = -1f;
+                _animatorButtonDay.Play("SwitchDayButton", 0, 1f);
+            }
+
+
+        }
+
+
     }
   
 
