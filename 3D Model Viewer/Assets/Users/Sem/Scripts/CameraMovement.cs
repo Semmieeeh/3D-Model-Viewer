@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
+
 
 public class CameraMovement : MonoBehaviour
 {
@@ -103,12 +105,20 @@ public class CameraMovement : MonoBehaviour
     #endregion
 
     #region Rotation
+    bool canRotate;
     private void Rotate()
     {
         float moveX = 0f;
         float moveY = 0f;
-
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0) && EventSystem.current.IsPointerOverGameObject())
+        {
+            canRotate = false;
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            canRotate = true;
+        }
+        if (Input.GetMouseButton(0) && canRotate == true)
         {
             float mouseX = Input.GetAxis("Mouse X");
             float mouseY = Input.GetAxis("Mouse Y");
@@ -171,9 +181,19 @@ public class CameraMovement : MonoBehaviour
     #endregion
 
     #region Pan
+    bool canPan;
     private void Pan()
     {
-        if (Input.GetMouseButton(1) || Input.GetMouseButton(2))
+        if (Input.GetMouseButtonDown(1) && EventSystem.current.IsPointerOverGameObject() || Input.GetMouseButtonDown(2) && EventSystem.current.IsPointerOverGameObject())
+        {
+            canPan = false;
+        }
+        if (!Input.GetMouseButton(1) && !Input.GetMouseButton(2))
+        {
+            canPan = true;
+        }
+        Debug.Log(canPan);
+        if (Input.GetMouseButton(1) && canPan == true || Input.GetMouseButton(2) && canPan == true)
         {
             float distance = Mathf.Max(Vector3.Distance(transform.position, pivot.position), 1f);
 
@@ -199,11 +219,25 @@ public class CameraMovement : MonoBehaviour
     #endregion
 
     #region Zoom
+    bool canZoom;
+    float scroll;
     private void Zoom()
     {
-        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            canZoom = false;
+        }
+        else
+        {
+            canZoom = true;
+        }
+        if(canZoom == true) 
+        {
+            scroll = Input.GetAxis("Mouse ScrollWheel");
+        }
+        
 
-        if (Input.GetKey(KeyCode.LeftControl))
+        if (Input.GetKey(KeyCode.LeftControl) )
         {
              scroll = Input.GetAxisRaw("Vertical") * Time.deltaTime;
         }
