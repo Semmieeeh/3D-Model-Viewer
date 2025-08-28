@@ -1,29 +1,39 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.Animations;
+using UnityEngine.Animations;
+using UnityEngine.EventSystems;
 
-public class Besturings_Paneel : MonoBehaviour
+public class Besturings_Paneel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public Animator Animator;
-    public bool hover;
-    public float lerpValuMin = 0f;
-    public float lerpValuMax = 1f;
-    public float lerpValu;
+    private bool hover;
+    private float menuOpenValu;
+    public float menuOpenSpeed;
     void Start()
     {
-        
+        hover= false;  
     }
 
-    
+    public void OnPointerEnter (PointerEventData eventData) {
+        hover= true;
+    }
+
+    public void OnPointerExit(PointerEventData eventData) {
+        hover= false;
+    }
+
     void Update()
     {
         Animator.SetBool("Hover", hover);
-        Animator.SetFloat ("OpenVal" , lerpValu);
-    }
+        Animator.SetFloat ("OpenVal" , menuOpenValu);
 
-    public void HoverOn () {
-        lerpValu = Mathf.Lerp (lerpValuMin , lerpValuMax , 0.1f);
+        if(hover == false && menuOpenValu > 0 ) {
+            menuOpenValu -= menuOpenSpeed * Time.deltaTime;
+        }
+        else if(hover == true && menuOpenValu < 10) {
+            menuOpenValu += menuOpenSpeed * Time.deltaTime;
+        }
     }
-    public void HoverOff () {
-        lerpValu = Mathf.Lerp (lerpValuMax , lerpValuMin , 0.1f);
-    }
+       
 }
