@@ -69,11 +69,12 @@ public class LightingHandler : MonoBehaviour
     }
     private void Update()
     {
+       
         if(_pivotPoint == null)
         {
             _pivotPoint = UIHandler.Instance.GetModel().transform;
         }
-
+        _animatorButtonDay.SetBool("Activate", _isDay);
         if (Input.GetKeyDown((KeyCode.F)) && !_isTransitioning)
         {
             SwitchDayNightMode();
@@ -164,17 +165,7 @@ public class LightingHandler : MonoBehaviour
 
         if (_animatorButtonDay != null)
         {
-            if (!_isDay)
-            {
-                _animatorButtonDay.speed = 1f;
-                _animatorButtonDay.Play("SwitchDayButton", 0, 0f);
-            }
-            else
-            {
-                _animatorButtonDay.speed = -1f;
-                _animatorButtonDay.Play("SwitchDayButton", 0, 1f);
-            }
-
+            _animatorButtonDay.Play("SwitchDayButton");
 
         }
 
