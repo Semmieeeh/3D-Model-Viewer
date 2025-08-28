@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIHandler : MonoBehaviour
 {
@@ -7,11 +8,17 @@ public class UIHandler : MonoBehaviour
  
     [SerializeField] private GameObject _currentActivePrefab;
     [SerializeField] private GameObject _currentActiveModel;
+
     [SerializeField] private Material _claymaterial;
     [SerializeField] private Material _unlit;
     [SerializeField] private Material _lit;
 
 
+    [SerializeField] private Button _clayMaterialButton;
+    [SerializeField] private Button _UnlitMaterialButton;
+    [SerializeField] private Button _litMaterialButton;
+
+    private Material _originalMaterial;
     public static UIHandler Instance {  get; private set; }
     
     void Awake()
@@ -27,45 +34,76 @@ public class UIHandler : MonoBehaviour
         
         _selectedModel = PlayerPrefs.GetInt("SelectedImageIndex");
         _currentActivePrefab = _allModels[_selectedModel].gameObject;
-
         _currentActiveModel = Instantiate(_currentActivePrefab);
-        
+        _originalMaterial = _currentActiveModel.GetComponent<Renderer>().sharedMaterial;
     }
-
-   public void SetMaterial( Shader shader, bool isLit, Color color)
+    private void Start()
     {
-        Renderer[] renders = _currentActiveModel.GetComponentsInChildren<Renderer>();
-        if(renders.Length > 0 )
-        {
-            foreach(Renderer render in renders)
-            {
-                Material currentMaterial = render.material;
-                currentMaterial.shader = shader ?? currentMaterial.shader;
-                currentMaterial.color = color;
-            }
-        }
-        
-
-        
+        _clayMaterialButton.onClick.AddListener(SetClayMaterial);
+        _litMaterialButton.onClick.AddListener(SetLitMaterial);
+        _UnlitMaterialButton.onClick.AddListener(SetUnlitMaterial);
     }
 
-   public GameObject GetModel()
+
+
+    public GameObject GetModel()
    {
         return _currentActiveModel;
    }
    
-    public void ChangeMatUnlit()
+    public void SetClayMaterial()
     {
-        Shader unlitShader = Shader.Find("Unlit/Color");
-        if(unlitShader == null)
+       SetMaterial(_claymaterial,true,Color.white);
+    }
+    public void SetUnlitMaterial()
+    {
+      SetMaterial(_unlit,true,Color.white);
+    }
+    public void SetLitMaterial()
+    {
+        SetMaterial(_lit,true,Color.white);
+        if(_originalMaterial != null && _originalMaterial.shader.name.Contains("Lit"))
         {
-            return;
+            Renderer renderer = _currentActiveModel.GetComponent<Renderer>();
+            if(renderer != null)
+            {
+                renderer.material = new Material(_originalMaterial);
+            }
         }
-        SetMaterial(unlitShader ,false, Color.white);
+    }
+    private void SetMaterial(Material material, bool useMaterial, Color color)
+    {
+        if(_currentActiveModel != null)
+        {
+            Renderer renderer = _currentActiveModel.GetComponent<Renderer>();
+            if(renderer !=null)
+            {
+                if (useMaterial)
+                {
+                    Material newMat = new Material(material);
+                    if (material == _claymaterial)
+                    {
+                        newMat.mainTexture = null;
+                        newMat.color = color;
+                    }
+                    else
+                    {
+                        if(_originalMaterial.mainTexture != null)
+                        {
+                            newMat.mainTexture = _originalMaterial.mainTexture;
+                        }
+                    }
+                   renderer.material = newMat;
+
+                }
+                else
+                {
+                    renderer.material.shader = material.shader;
+                    renderer.material.color = color;
+                }
+            }
+        }
     }
 
-    public GameObject GetCurrentActiveModel()
-    {
-        return _currentActiveModel;
-    }
+   
 }

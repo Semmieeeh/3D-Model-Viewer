@@ -10,7 +10,10 @@ public class LightingHandler : MonoBehaviour
 
     [SerializeField] private Color _dayColor = new Color(1f, 0.9f, 0.8f);
     [SerializeField] private Color _nightColor = new Color(0.1f, 0.1f, 0.3f);
-
+    [SerializeField] private Color _dayColorSkyBox;
+    [SerializeField] private Color _nightColorSkyBox;
+    [SerializeField] private Color _groundColorDay;
+    [SerializeField] private Color _groundColorNight;
     private float _dayIntensity = 1f;
     private float _nightIntensity = 0.1f;
 
@@ -40,8 +43,11 @@ public class LightingHandler : MonoBehaviour
     [SerializeField] private float _orbitDistance;
     [SerializeField] private float _rotationSpeed;
 
+
+    [SerializeField] private Material _skyboxMaterial;
     private void Start()
     {
+
         if (_toggleButton != null)
         {
             _toggleButton.onClick.AddListener(SwitchDayNightMode);
@@ -63,7 +69,7 @@ public class LightingHandler : MonoBehaviour
     {
         if(_pivotPoint == null)
         {
-            _pivotPoint = UIHandler.Instance.GetCurrentActiveModel().transform;
+            _pivotPoint = UIHandler.Instance.GetModel().transform;
         }
 
         if (Input.GetKeyDown((KeyCode.Space)) && !_isTransitioning)
@@ -115,12 +121,23 @@ public class LightingHandler : MonoBehaviour
         float startIntensity = _isDay ? _nightIntensity : _dayIntensity;
         float endIntensity = _isDay ? _dayIntensity : _nightIntensity;
 
+        Color startSkyColor = _isDay ? _nightColorSkyBox : _dayColorSkyBox;
+        Color endSkyColor = _isDay ? _dayColorSkyBox : _nightColorSkyBox;
+
+        Color startGroundColor = _isDay ? _groundColorNight : _groundColorDay;
+        Color endGroundColor = _isDay ? _groundColorDay : _groundColorNight;
+        float startStarsCount = _isDay ? 298 : 0;
+        float endStarsCount = _isDay ? 0 : 298;
+       
         while (_transisionTime < _transisionDuration)
         {
             _transisionTime += Time.deltaTime;
             float t = _transisionTime / _transisionDuration;
             _lightSource.color = Color.Lerp(startColor, endColor, t);
             _lightSource.intensity = Mathf.Lerp(startIntensity, endIntensity, t);
+            _skyboxMaterial.SetColor("_Sky_Color", Color.Lerp(startSkyColor, endSkyColor, t));
+            _skyboxMaterial.SetFloat("_starIntesity", Mathf.Lerp(startStarsCount,endStarsCount,t));
+            _skyboxMaterial.SetColor("_GroundColor", Color.Lerp(startGroundColor,endGroundColor,t));
             yield return null;
         }
 
@@ -128,10 +145,16 @@ public class LightingHandler : MonoBehaviour
         _lightSource.intensity = endIntensity;
         _isTransitioning = false;
     }
+
+   
     private void SwitchDayNightMode()
     {
-        _isDay = !_isDay;
-        StartCoroutine(TransisionLight());
+        if (!_isTransitioning)
+        {
+            _isDay = !_isDay;
+            StartCoroutine(TransisionLight());
+        }
+        
         //update button
     }
   
