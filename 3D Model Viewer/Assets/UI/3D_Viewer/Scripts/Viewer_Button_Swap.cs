@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.Animations;
 public class Viewer_Button_Swap : MonoBehaviour
 {
-    public GameObject button;
+    public GameObject buttonImage;
     public Animation uIElementAni;
     public Sprite open;
     public AnimationClip openAni;
@@ -13,7 +13,7 @@ public class Viewer_Button_Swap : MonoBehaviour
     public bool uIActive;
     void Start()
     {
-        curImage = button.GetComponent<Image>();
+        curImage = buttonImage.GetComponent<Image>();
         uIActive = false;
     }
     void Update()
@@ -37,9 +37,9 @@ public class Viewer_Button_Swap : MonoBehaviour
     }
 
     public void ButtonActif () {
-        button.GetComponent<Button>().enabled = true;
+        buttonImage.GetComponent<Button>().enabled = true;
     }
     public void ButtonInActif () {
-        button.GetComponent<Button> ().enabled = false;
+        buttonImage.GetComponent<Button> ().enabled = false;
     }
 }
