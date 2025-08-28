@@ -1,26 +1,15 @@
 using UnityEngine;
 
-[ExecuteInEditMode]
 public class ModelInfo : MonoBehaviour
 {
+    public string creatorName;
     [TextArea]
     public string info;
     public int vertexCount;
     public int faceCount;
-
-    private void Start()
-    {
-        UpdateModelInfo();
-    }
-    private void OnValidate()
-    {
-        UpdateModelInfo();
-    }
-
     private void Update()
     {
-        if (Application.isPlaying) 
-            UpdateModelInfo();
+        UpdateModelInfo();
     }
 
     private void UpdateModelInfo()
