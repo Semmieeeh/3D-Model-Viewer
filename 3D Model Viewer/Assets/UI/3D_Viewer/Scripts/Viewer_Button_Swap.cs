@@ -37,9 +37,9 @@ public class Viewer_Button_Swap : MonoBehaviour
     }
 
     public void ButtonActif () {
-        buttonImage.GetComponent<Button>().enabled = true;
+        //buttonImage.GetComponent<Button>().enabled = true;
     }
     public void ButtonInActif () {
-        buttonImage.GetComponent<Button> ().enabled = false;
+        //buttonImage.GetComponent<Button> ().enabled = false;
     }
 }

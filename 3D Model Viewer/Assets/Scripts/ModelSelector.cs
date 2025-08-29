@@ -1,12 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using NUnit.Framework;
 
 public class ModelSelector : MonoBehaviour
 {
     // Een array van image's waar alle modellen laten zien worden
-    public Button[] imageButtons;
-
+    public List<Button> imageButtons;
+    public GameObject buttonParent;
     // De selecteer knop om het gekozen model te laden
     public Button confirmButton;
 
@@ -16,6 +18,7 @@ public class ModelSelector : MonoBehaviour
 
     private Button selectedImageButton;
 
+    
     void Start()
     {
         // Uit zetten van de selecteer knop zodat er altijd een model geselecteerd moet worden voor dat er iets geladen kan worden
@@ -23,7 +26,12 @@ public class ModelSelector : MonoBehaviour
         {
             confirmButton.interactable = false;
         }
-
+        Button[] buttons = buttonParent.GetComponentsInChildren<Button>();
+        Debug.Log(buttons.Length);
+        for(int i = 0; i <buttons.Length; i++)
+        {
+            imageButtons.Add(buttons[i]);
+        }
         // Voegt een listener toe om de image's van de modellen klikbaar te maken
         foreach (Button btn in imageButtons)
         {
@@ -74,7 +82,7 @@ public class ModelSelector : MonoBehaviour
         if (selectedImageButton != null)
         {
             // Slaat de index of naam op van de image voor gebruik in de volgende scene
-            int selectedIndex = System.Array.IndexOf(imageButtons, selectedImageButton);
+            int selectedIndex = imageButtons.IndexOf(selectedImageButton);
             PlayerPrefs.SetInt("SelectedImageIndex", selectedIndex);
 
             // laad de volgende scene

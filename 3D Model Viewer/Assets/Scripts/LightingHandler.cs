@@ -7,6 +7,7 @@ public class LightingHandler : MonoBehaviour
 {
 
     [SerializeField] private Light _lightSource;
+    [SerializeField] private Light _pointLight;
 
     [SerializeField] private Color _dayColor = new Color(1f, 0.9f, 0.8f);
     [SerializeField] private Color _nightColor = new Color(0.1f, 0.1f, 0.3f);
@@ -87,25 +88,29 @@ public class LightingHandler : MonoBehaviour
         {
            
             float rotationSpeed = isEKeyPressed || _clockwiseButtonHeld ? _rotationSpeed : -_rotationSpeed;
-            _turnAroundCoroutine = StartCoroutine(TurnAround(_lightSource.transform, _pivotPoint.position, rotationSpeed));
+            _turnAroundCoroutine = StartCoroutine(TurnAround(_lightSource.transform, _pointLight.transform, _pivotPoint.position, rotationSpeed));
             Debug.Log($"{(isEKeyPressed ? "E" : "Q")} key held: Starting rotation");
         }
         else if (!isRotating && _turnAroundCoroutine != null)
         {
             StopCoroutine(_turnAroundCoroutine);
+            _rotationSpeed = 20;
             _turnAroundCoroutine = null;
             Debug.Log("Keys released: Stopping rotation");
         }
     }
 
-    private IEnumerator TurnAround(Transform objToRotate, Vector3 pivotPoint, float rotationSpeed)
+    private IEnumerator TurnAround(Transform objToRotate, Transform pointLight, Vector3 pivotPoint, float rotationSpeed)
     {
         while (Input.GetKey(KeyCode.E) || Input.GetKey(KeyCode.Q) || _clockwiseButtonHeld || _counterClockwiseButtonHeld)
         {
-
+            if(rotationSpeed < 100)
+            {
+                _rotationSpeed += 5f * Time.deltaTime;
+            }
             float currentSpeed = (Input.GetKey(KeyCode.E) || _clockwiseButtonHeld) ? _rotationSpeed : -_rotationSpeed;
             objToRotate.RotateAround(pivotPoint, Vector3.up, currentSpeed * Time.deltaTime);
-            objToRotate.LookAt(pivotPoint);
+            pointLight.LookAt(pivotPoint);
             yield return null;
         }
         _turnAroundCoroutine = null;

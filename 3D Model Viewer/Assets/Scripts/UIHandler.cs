@@ -33,8 +33,7 @@ public class UIHandler : MonoBehaviour
 
         
         _selectedModel = PlayerPrefs.GetInt("SelectedImageIndex");
-        _currentActivePrefab = _allModels[_selectedModel].gameObject;
-        _currentActiveModel = Instantiate(_currentActivePrefab);
+        _currentActiveModel = _allModels[_selectedModel].gameObject;
         _originalMaterial = _currentActiveModel.GetComponent<Renderer>().sharedMaterial;
     }
     private void Start()
@@ -53,7 +52,7 @@ public class UIHandler : MonoBehaviour
    
     public void SetClayMaterial()
     {
-       SetMaterial(_claymaterial,true,Color.white);
+       SetMaterial(_claymaterial,true,Color.gray);
     }
     public void SetUnlitMaterial()
     {
