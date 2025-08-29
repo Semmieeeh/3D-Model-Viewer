@@ -80,7 +80,18 @@ public class CameraMovement : MonoBehaviour
             panVelocity = Vector2.zero;
         }
     }
+    public void MenuReset()
+    {
+        resetting = true;
+        resetTimer = 0f;
 
+        resetStartPivotPos = pivot.position;
+        resetStartPivotRot = pivot.rotation;
+        resetStartZoom = transform.localPosition.magnitude; // capture zoom start
+
+        rotationVelocity = Vector2.zero;
+        panVelocity = Vector2.zero;
+    }
     private void HandleReset()
     {
         resetTimer += Time.deltaTime;

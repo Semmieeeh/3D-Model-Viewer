@@ -30,7 +30,8 @@ public class CursorBehaviour : MonoBehaviour
     void Update()
     {
         // Make the cursor follow the mouse
-        transform.position = Input.mousePosition;
+        Vector3 offset = new Vector3(5, -10, 0);
+        transform.position = Input.mousePosition + offset;
         HandleRotation();
         // Check for mouse clicks
         if (Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2))
