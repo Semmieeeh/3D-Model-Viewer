@@ -30,9 +30,7 @@ public class ToolTipManager : MonoBehaviour
     private void ShowToolTip (string tip, Vector2 mousePos ) { 
         tipText.text = tip;
         tipWindow.sizeDelta= new Vector2(tipText.preferredWidth > 150 ? 150 : tipText.preferredWidth, tipText.preferredHeight);
-        tipWindow.transform.position = new Vector2 (mousePos.x + tipWindow.sizeDelta.x * tipWidthOfset , mousePos.y * tipHeightOfset);
-
-
+        tipWindow.transform.position = new Vector2 (mousePos.x + (tipWindow.sizeDelta.x * tipWidthOfset) , mousePos.y + (tipWindow.sizeDelta.y * tipHeightOfset));
         tipWindow.gameObject.SetActive( true );
         
     }
