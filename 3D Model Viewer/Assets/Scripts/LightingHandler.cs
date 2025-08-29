@@ -5,55 +5,59 @@ using UnityEngine;
 
 public class LightingHandler : MonoBehaviour
 {
+    [Header("Light Sources")]
 
     [SerializeField] private Light _lightSource;
     [SerializeField] private Light _pointLight;
+    
+    
+    [Header("Colour skybox")]
 
-    [SerializeField] private Color _dayColor = new Color(1f, 0.9f, 0.8f);
-    [SerializeField] private Color _nightColor = new Color(0.1f, 0.1f, 0.3f);
+    [SerializeField] private Color _dayColorLight;
+    [SerializeField] private Color _nightColorNight;
     [SerializeField] private Color _dayColorSkyBox;
     [SerializeField] private Color _nightColorSkyBox;
     [SerializeField] private Color _groundColorDay;
     [SerializeField] private Color _groundColorNight;
+
+    private float _transisionTime = 0f;
+    private float _transisionDuration = 2f;
     private float _dayIntensity = 1f;
     private float _nightIntensity = 0.1f;
+    private float _rotationSpeed;
 
-    [SerializeField] private bool _isDay = true;
+    private bool _isTransitioning = false;
+    private bool _isDay = true;
 
-    [SerializeField] private Transform _pivotPoint;
+    private bool _wasEKeyPressed;
+    private bool _wasQKeyPressed;
+    private Coroutine _turnAroundCoroutine;
 
-    [SerializeField] private float _transisionTime = 0f;
-    [SerializeField] private float _transisionDuration = 2f;
-    [SerializeField] private bool _isTransitioning = false;
-
-    [SerializeField] private bool _activate = false;
-
-
-    [SerializeField] private bool _wasEKeyPressed;
-    [SerializeField] private bool _wasQKeyPressed;
-    [SerializeField]private Coroutine _turnAroundCoroutine;
-
-    [SerializeField] private Button _toggleButton;
+    private Transform _pivotPoint;
+    [Header("Buttons Toggle ")]
+    [SerializeField] private Button _toggleButtonDayNight;
     [SerializeField] private Button _clockWiseButton;
     [SerializeField] private Button _counterClockwise;
 
-    [SerializeField] private bool _clockwiseButtonHeld;
-    [SerializeField] private bool _counterClockwiseButtonHeld;
+    private bool _clockwiseButtonHeld;
+    private bool _counterClockwiseButtonHeld;
 
-
-    [SerializeField] private float _orbitDistance;
-    [SerializeField] private float _rotationSpeed;
-
-
+    [Header("Skybox reference")]
     [SerializeField] private Material _skyboxMaterial;
 
+    [Header("Animator button day night")]
     [SerializeField] private Animator _animatorButtonDay;
+    [SerializeField] private Animation _rotateSunIconRight;
+    [SerializeField] private Animation _rotateSunIconLeft;
+
+
+
     private void Start()
     {
-
-        if (_toggleButton != null)
+        //subscribing handlers and skybox set to day
+        if (_toggleButtonDayNight != null)
         {
-            _toggleButton.onClick.AddListener(SwitchDayNightMode);
+            _toggleButtonDayNight.onClick.AddListener(SwitchDayNightMode);
         }
         if (_clockWiseButton != null)
         {
@@ -67,7 +71,12 @@ public class LightingHandler : MonoBehaviour
             holdHandler.OnHoldButton += () => _counterClockwiseButtonHeld = true;
             holdHandler.OnReleaseButton += () => _counterClockwiseButtonHeld = false;
         }
+
+        _skyboxMaterial.SetColor("_Sky_Color", _dayColorSkyBox);
+        _skyboxMaterial.SetFloat("_starIntesity", 0);
+        _skyboxMaterial.SetColor("_GroundColor",_groundColorDay);
     }
+
     private void Update()
     {
        
@@ -100,6 +109,8 @@ public class LightingHandler : MonoBehaviour
         }
     }
 
+
+    #region Rotation Lights
     private IEnumerator TurnAround(Transform objToRotate, Transform pointLight, Vector3 pivotPoint, float rotationSpeed)
     {
         while (Input.GetKey(KeyCode.E) || Input.GetKey(KeyCode.Q) || _clockwiseButtonHeld || _counterClockwiseButtonHeld)
@@ -111,11 +122,16 @@ public class LightingHandler : MonoBehaviour
             float currentSpeed = (Input.GetKey(KeyCode.E) || _clockwiseButtonHeld) ? _rotationSpeed : -_rotationSpeed;
             objToRotate.RotateAround(pivotPoint, Vector3.up, currentSpeed * Time.deltaTime);
             pointLight.LookAt(pivotPoint);
+            Animation animation = (Input.GetKey(KeyCode.E) || _clockwiseButtonHeld) ? _rotateSunIconRight : _rotateSunIconLeft;
+            animation.Play();
             yield return null;
         }
         _turnAroundCoroutine = null;
 
     }
+    #endregion
+
+
     #region SwitchLights
     private IEnumerator TransisionLight()
     {
@@ -123,9 +139,9 @@ public class LightingHandler : MonoBehaviour
         _isTransitioning = true;
         _transisionTime = 0f;
         _transisionDuration = 2f;
-
-        Color startColor = _isDay ? _nightColor : _dayColor;
-        Color endColor = _isDay ? _dayColor : _nightColor;
+        // kiest welk kleur hij moet toepassen op de shader.
+        Color startColor = _isDay ? _nightColorNight : _dayColorLight;
+        Color endColor = _isDay ? _dayColorLight : _nightColorNight;
         float startIntensity = _isDay ? _nightIntensity : _dayIntensity;
         float endIntensity = _isDay ? _dayIntensity : _nightIntensity;
 
@@ -153,8 +169,7 @@ public class LightingHandler : MonoBehaviour
         _lightSource.intensity = endIntensity;
         _isTransitioning = false;
     }
-    #endregion
-
+   
     
 
     private void SwitchDayNightMode()
@@ -176,7 +191,8 @@ public class LightingHandler : MonoBehaviour
 
 
     }
-  
+
+    #endregion
 
 }
 

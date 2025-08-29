@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIHandler : MonoBehaviour
@@ -18,7 +19,7 @@ public class UIHandler : MonoBehaviour
     [SerializeField] private Button _UnlitMaterialButton;
     [SerializeField] private Button _litMaterialButton;
 
-    private Material _originalMaterial;
+    [SerializeField]private Material _originalMaterial;
     public static UIHandler Instance {  get; private set; }
     
     void Awake()
@@ -34,8 +35,9 @@ public class UIHandler : MonoBehaviour
         
         _selectedModel = PlayerPrefs.GetInt("SelectedImageIndex");
         _currentActiveModel = _allModels[_selectedModel].gameObject;
-        _originalMaterial = _currentActiveModel.GetComponent<Renderer>().sharedMaterial;
+       
     }
+
     private void Start()
     {
         _clayMaterialButton.onClick.AddListener(SetClayMaterial);
@@ -43,7 +45,13 @@ public class UIHandler : MonoBehaviour
         _UnlitMaterialButton.onClick.AddListener(SetUnlitMaterial);
     }
 
-
+    private void Update()
+    {
+        if(_originalMaterial == null)
+        {
+            _originalMaterial = _currentActiveModel.GetComponent<Renderer>().material;
+        }
+    }
 
     public GameObject GetModel()
    {
@@ -104,7 +112,19 @@ public class UIHandler : MonoBehaviour
             }
         }
     }
-    
+    public void SetOriginalMaterial(Material newmat)
+    {
+        _originalMaterial = newmat;
+    }
+    public void SetCurrentModel(GameObject newmodel)
+    {
+        _currentActiveModel.GetComponent<Renderer>().material = _originalMaterial;
+        _currentActiveModel = newmodel;
+    }
+    public void LoadPrevieusScene()
+    {
+        SceneManager.LoadScene(0);
+    }
 
 
 }
