@@ -292,7 +292,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcea87e0823e52c46b70236b31495f64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lightSource: {fileID: 1355548122}
+  _lightSource: {fileID: 1183092185}
+  _pointLight: {fileID: 1355548122}
   _dayColor: {r: 0.8415094, g: 0.77068317, b: 0.69702387, a: 1}
   _nightColor: {r: 0.4625062, g: 0.52002335, b: 0.5568628, a: 1}
   _dayColorSkyBox: {r: 0.88113207, g: 0.9040332, b: 1, a: 0}
