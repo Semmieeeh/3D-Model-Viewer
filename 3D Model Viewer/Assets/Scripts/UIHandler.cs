@@ -70,6 +70,7 @@ public class UIHandler : MonoBehaviour
             }
         }
     }
+    
     private void SetMaterial(Material material, bool useMaterial, Color color)
     {
         if(_currentActiveModel != null)
@@ -103,6 +104,7 @@ public class UIHandler : MonoBehaviour
             }
         }
     }
+    
 
-   
+
 }

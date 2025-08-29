@@ -7,6 +7,10 @@ public class ModelInfo : MonoBehaviour
     public string info;
     public int vertexCount;
     public int faceCount;
+    private void Awake()
+    {
+        UpdateModelInfo();
+    }
     private void Update()
     {
         UpdateModelInfo();
