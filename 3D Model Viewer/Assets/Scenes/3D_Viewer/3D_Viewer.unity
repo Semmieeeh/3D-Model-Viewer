@@ -1433,7 +1433,7 @@ MonoBehaviour:
   panSpeed: 0.01
   panDamping: 12
   zoomSpeed: 2
-  minZoom: 0.5
+  minZoom: 0.1
   maxZoom: 20
   resetDuration: 0.75
 --- !u!114 &1706241319148057049 stripped
