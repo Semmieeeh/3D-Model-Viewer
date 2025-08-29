@@ -118,7 +118,7 @@ public class UIHandler : MonoBehaviour
     }
     public void SetCurrentModel(GameObject newmodel)
     {
-        _currentActiveModel.GetComponent<Renderer>().material = _originalMaterial;
+        
         _currentActiveModel = newmodel;
     }
     public void LoadPrevieusScene()

@@ -37,7 +37,8 @@ public class ModelManager : MonoBehaviour
         newModel.transform.localScale = Vector3.one * 0.01f;
         newModel.SetActive(true);
         UIHandler.Instance.SetCurrentModel(newModel);
-        UIHandler.Instance.SetOriginalMaterial(newModel.GetComponent<Renderer>().material);
+        UIHandler.Instance.SetOriginalMaterial(newModel.GetComponent<ModelInfo>()._ownMaterial);
+        
         
         // 3. Grow to full size
         yield return StartCoroutine(ScaleOverTime(newModel, Vector3.one * 0.01f, Vector3.one, animationDuration));

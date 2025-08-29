@@ -7,9 +7,14 @@ public class ModelInfo : MonoBehaviour
     public string info;
     public int vertexCount;
     public int faceCount;
-    private Material _ownMaterial;
+    public Material _ownMaterial;
     private void Awake()
     {
+        if(_ownMaterial == null)
+        {
+            _ownMaterial = GetComponent<Material>();
+        }
+       
         UpdateModelInfo();
     }
     private void Update()
