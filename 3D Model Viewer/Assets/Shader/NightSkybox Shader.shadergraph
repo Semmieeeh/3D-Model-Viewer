@@ -137,7 +137,32 @@
         }
     ],
     "m_GroupDatas": [],
-    "m_StickyNoteDatas": [],
+    "m_StickyNoteDatas": [
+        {
+            "m_Id": "1e4d09fa49e640648beded2ba877c7d9"
+        },
+        {
+            "m_Id": "fff78cf131b6401bafec4bca7d76b705"
+        },
+        {
+            "m_Id": "ee8b63acd6764ad2963a728dfb5c94f0"
+        },
+        {
+            "m_Id": "3d553c597f794561b34af855b0ed6edd"
+        },
+        {
+            "m_Id": "227f6a7a3a2046b5bdaff342e2e9d862"
+        },
+        {
+            "m_Id": "8815cf83ee0046a79814157aa3cc9b1a"
+        },
+        {
+            "m_Id": "ed59dd753f6e4f94a43df3749674a84f"
+        },
+        {
+            "m_Id": "d4b59adddb2a4d578ece930df1f99c2a"
+        }
+    ],
     "m_Edges": [
         {
             "m_OutputSlot": {
@@ -983,6 +1008,26 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.StickyNoteData",
+    "m_ObjectId": "1e4d09fa49e640648beded2ba877c7d9",
+    "m_Title": "position",
+    "m_Content": "zorgt er voor dat de position van de sky box op de world space staat\n",
+    "m_TextSize": 0,
+    "m_Theme": 0,
+    "m_Position": {
+        "serializedVersion": "2",
+        "x": -484.0,
+        "y": -216.0,
+        "width": 200.0,
+        "height": 164.0
+    },
+    "m_Group": {
+        "m_Id": ""
+    }
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
     "m_ObjectId": "1f6e3f71739542eebbf1ae667a7a43a5",
     "m_Id": 1,
@@ -1002,6 +1047,26 @@
         "y": 0.0,
         "z": 0.0,
         "w": 0.0
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.StickyNoteData",
+    "m_ObjectId": "227f6a7a3a2046b5bdaff342e2e9d862",
+    "m_Title": "kleur",
+    "m_Content": "een variable voor de kleur van de grond\n",
+    "m_TextSize": 0,
+    "m_Theme": 0,
+    "m_Position": {
+        "serializedVersion": "2",
+        "x": 1083.0,
+        "y": 1009.0,
+        "width": 80.0,
+        "height": 100.0
+    },
+    "m_Group": {
+        "m_Id": ""
     }
 }
 
@@ -1213,6 +1278,26 @@
         "y": 0.0,
         "z": 0.0,
         "w": 0.0
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.StickyNoteData",
+    "m_ObjectId": "3d553c597f794561b34af855b0ed6edd",
+    "m_Title": "Gradient",
+    "m_Content": "een gradient voor de kleur van de grond\n",
+    "m_TextSize": 0,
+    "m_Theme": 0,
+    "m_Position": {
+        "serializedVersion": "2",
+        "x": 304.0,
+        "y": 866.0,
+        "width": 200.0,
+        "height": 100.0
+    },
+    "m_Group": {
+        "m_Id": ""
     }
 }
 
@@ -2086,6 +2171,26 @@
     "m_PreviewMode": 0,
     "m_CustomColors": {
         "m_SerializableColors": []
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.StickyNoteData",
+    "m_ObjectId": "8815cf83ee0046a79814157aa3cc9b1a",
+    "m_Title": "kleur",
+    "m_Content": "een variable voor de kleur van de lucht\n\n",
+    "m_TextSize": 0,
+    "m_Theme": 0,
+    "m_Position": {
+        "serializedVersion": "2",
+        "x": 727.0,
+        "y": -564.0,
+        "width": 80.0,
+        "height": 100.0
+    },
+    "m_Group": {
+        "m_Id": ""
     }
 }
 
@@ -3031,6 +3136,26 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.StickyNoteData",
+    "m_ObjectId": "d4b59adddb2a4d578ece930df1f99c2a",
+    "m_Title": "samen voegen ",
+    "m_Content": "hier worden de 3 vershillende gradient samen gevoegd",
+    "m_TextSize": 0,
+    "m_Theme": 0,
+    "m_Position": {
+        "serializedVersion": "2",
+        "x": 2167.0,
+        "y": -193.0,
+        "width": 200.0,
+        "height": 160.0
+    },
+    "m_Group": {
+        "m_Id": ""
+    }
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
     "m_ObjectId": "d5b32155dfc745968215f6ba36ef92a3",
     "m_Id": 0,
@@ -3682,6 +3807,46 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.StickyNoteData",
+    "m_ObjectId": "ed59dd753f6e4f94a43df3749674a84f",
+    "m_Title": "Gradient",
+    "m_Content": "een gradient voor de horizon line",
+    "m_TextSize": 0,
+    "m_Theme": 0,
+    "m_Position": {
+        "serializedVersion": "2",
+        "x": 927.0,
+        "y": -11.0,
+        "width": 200.0,
+        "height": 100.0
+    },
+    "m_Group": {
+        "m_Id": ""
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.StickyNoteData",
+    "m_ObjectId": "ee8b63acd6764ad2963a728dfb5c94f0",
+    "m_Title": "sub shader",
+    "m_Content": "een subshader die sterren creërt voor de nacht vatiant van de skybox\n",
+    "m_TextSize": 0,
+    "m_Theme": 0,
+    "m_Position": {
+        "serializedVersion": "2",
+        "x": 676.0,
+        "y": -1133.0,
+        "width": 200.0,
+        "height": 100.0
+    },
+    "m_Group": {
+        "m_Id": ""
+    }
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicValueMaterialSlot",
     "m_ObjectId": "eecc48aa739d4b03837aaae9537a7805",
     "m_Id": 1,
@@ -3952,6 +4117,26 @@
         "y": 0.0,
         "z": 0.0,
         "w": 0.0
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.StickyNoteData",
+    "m_ObjectId": "fff78cf131b6401bafec4bca7d76b705",
+    "m_Title": "gradient",
+    "m_Content": "een gradient voor de sky\n",
+    "m_TextSize": 0,
+    "m_Theme": 0,
+    "m_Position": {
+        "serializedVersion": "2",
+        "x": 293.0,
+        "y": -430.0,
+        "width": 200.0,
+        "height": 100.0
+    },
+    "m_Group": {
+        "m_Id": ""
     }
 }
 

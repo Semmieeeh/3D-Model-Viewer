@@ -112,20 +112,33 @@
             "m_Id": "282d4f1151714a0996b6aff38e5df7f9"
         },
         {
-            "m_Id": "ae8b211fe25e4125aadd7c4ce1e91725"
-        },
-        {
-            "m_Id": "3499ed87e02940a7808f11f88c0b3b48"
-        },
-        {
             "m_Id": "86190ff60972473aab7ee4f28cb91214"
-        },
-        {
-            "m_Id": "0a161363d7364b7e9b2408937229dd1a"
         }
     ],
     "m_GroupDatas": [],
-    "m_StickyNoteDatas": [],
+    "m_StickyNoteDatas": [
+        {
+            "m_Id": "00018ad6fadf46da8107247f61b188a0"
+        },
+        {
+            "m_Id": "da0ba9e57b744591b8145429fbadba9f"
+        },
+        {
+            "m_Id": "758de4de1a074291ab1cd1897fca9d33"
+        },
+        {
+            "m_Id": "14e0e822fc3a4732b9f3851484dad53d"
+        },
+        {
+            "m_Id": "d388ccee36184868b8b9b822006e83ab"
+        },
+        {
+            "m_Id": "fc8141d28e6346d5803de1f0a44c49e5"
+        },
+        {
+            "m_Id": "39341fdf472340e8b4d612a3919c0a6d"
+        }
+    ],
     "m_Edges": [
         {
             "m_OutputSlot": {
@@ -515,6 +528,26 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.StickyNoteData",
+    "m_ObjectId": "00018ad6fadf46da8107247f61b188a0",
+    "m_Title": "position",
+    "m_Content": "zorgt er voor dat de skybox op de world position wordt neer gezet\n",
+    "m_TextSize": 0,
+    "m_Theme": 0,
+    "m_Position": {
+        "serializedVersion": "2",
+        "x": -478.0,
+        "y": -158.0,
+        "width": 200.0,
+        "height": 100.0
+    },
+    "m_Group": {
+        "m_Id": ""
+    }
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.BlockNode",
     "m_ObjectId": "03a00df3df1f4857bba2987bfa7d960e",
     "m_Group": {
@@ -620,42 +653,6 @@
     "m_RangeValues": {
         "x": 0.009999999776482582,
         "y": 80.0
-    }
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
-    "m_ObjectId": "0a161363d7364b7e9b2408937229dd1a",
-    "m_Group": {
-        "m_Id": ""
-    },
-    "m_Name": "Property",
-    "m_DrawState": {
-        "m_Expanded": true,
-        "m_Position": {
-            "serializedVersion": "2",
-            "x": 440.36749267578127,
-            "y": -862.7325439453125,
-            "width": 0.0,
-            "height": 0.0
-        }
-    },
-    "m_Slots": [
-        {
-            "m_Id": "7a9f450ed9914dabb2c53b020305be2c"
-        }
-    ],
-    "synonyms": [],
-    "m_Precision": 0,
-    "m_PreviewExpanded": true,
-    "m_DismissedVersion": 0,
-    "m_PreviewMode": 0,
-    "m_CustomColors": {
-        "m_SerializableColors": []
-    },
-    "m_Property": {
-        "m_Id": "df03e4bd4fa84264b2cf17824a3d78e9"
     }
 }
 
@@ -852,6 +849,26 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.StickyNoteData",
+    "m_ObjectId": "14e0e822fc3a4732b9f3851484dad53d",
+    "m_Title": "gradient",
+    "m_Content": "een gradient van 2 kanten om een horizon line te creëren",
+    "m_TextSize": 0,
+    "m_Theme": 0,
+    "m_Position": {
+        "serializedVersion": "2",
+        "x": 1171.0,
+        "y": -19.0,
+        "width": 200.0,
+        "height": 100.0
+    },
+    "m_Group": {
+        "m_Id": ""
+    }
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
     "m_ObjectId": "1f6e3f71739542eebbf1ae667a7a43a5",
     "m_Id": 1,
@@ -1027,37 +1044,21 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
-    "m_ObjectId": "3499ed87e02940a7808f11f88c0b3b48",
+    "m_Type": "UnityEditor.ShaderGraph.StickyNoteData",
+    "m_ObjectId": "39341fdf472340e8b4d612a3919c0a6d",
+    "m_Title": "kleur",
+    "m_Content": "maakt een variable voor de kleur van de grond",
+    "m_TextSize": 0,
+    "m_Theme": 0,
+    "m_Position": {
+        "serializedVersion": "2",
+        "x": 1080.0,
+        "y": 1008.0,
+        "width": 80.0,
+        "height": 100.0
+    },
     "m_Group": {
         "m_Id": ""
-    },
-    "m_Name": "Property",
-    "m_DrawState": {
-        "m_Expanded": true,
-        "m_Position": {
-            "serializedVersion": "2",
-            "x": 364.0,
-            "y": -931.9999389648438,
-            "width": 130.00003051757813,
-            "height": 34.00006103515625
-        }
-    },
-    "m_Slots": [
-        {
-            "m_Id": "4b87d4e2cb11496b9fdc2ed144976220"
-        }
-    ],
-    "synonyms": [],
-    "m_Precision": 0,
-    "m_PreviewExpanded": true,
-    "m_DismissedVersion": 0,
-    "m_PreviewMode": 0,
-    "m_CustomColors": {
-        "m_SerializableColors": []
-    },
-    "m_Property": {
-        "m_Id": "dde9ed2d9eb14670812a39a0f2c5e50b"
     }
 }
 
@@ -1288,21 +1289,6 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
-    "m_ObjectId": "4b87d4e2cb11496b9fdc2ed144976220",
-    "m_Id": 0,
-    "m_DisplayName": "StarPower",
-    "m_SlotType": 1,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "Out",
-    "m_StageCapability": 3,
-    "m_Value": 0.0,
-    "m_DefaultValue": 0.0,
-    "m_Labels": []
-}
-
-{
-    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
     "m_ObjectId": "4d1c4b298a934ae2b50f176c6f327689",
     "m_Id": 1,
@@ -1347,21 +1333,6 @@
     },
     "m_Labels": [],
     "m_Space": 0
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
-    "m_ObjectId": "595f84cf98c64d5ba82b9f3b6ede0580",
-    "m_Id": 0,
-    "m_DisplayName": "Starhight",
-    "m_SlotType": 1,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "Out",
-    "m_StageCapability": 3,
-    "m_Value": 0.0,
-    "m_DefaultValue": 0.0,
-    "m_Labels": []
 }
 
 {
@@ -1746,6 +1717,26 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.StickyNoteData",
+    "m_ObjectId": "758de4de1a074291ab1cd1897fca9d33",
+    "m_Title": "Gradient 2",
+    "m_Content": "Gradient voor de grond kleur\n",
+    "m_TextSize": 0,
+    "m_Theme": 0,
+    "m_Position": {
+        "serializedVersion": "2",
+        "x": 344.0,
+        "y": 900.0,
+        "width": 200.0,
+        "height": 100.0
+    },
+    "m_Group": {
+        "m_Id": ""
+    }
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
     "m_ObjectId": "77a9ef853f134f508c10be94a8158f5f",
     "m_Id": 2,
@@ -1766,21 +1757,6 @@
         "z": 0.0,
         "w": 0.0
     }
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
-    "m_ObjectId": "7a9f450ed9914dabb2c53b020305be2c",
-    "m_Id": 0,
-    "m_DisplayName": "starIntesity",
-    "m_SlotType": 1,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "Out",
-    "m_StageCapability": 3,
-    "m_Value": 0.0,
-    "m_DefaultValue": 0.0,
-    "m_Labels": []
 }
 
 {
@@ -2189,42 +2165,6 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
-    "m_ObjectId": "ae8b211fe25e4125aadd7c4ce1e91725",
-    "m_Group": {
-        "m_Id": ""
-    },
-    "m_Name": "Property",
-    "m_DrawState": {
-        "m_Expanded": true,
-        "m_Position": {
-            "serializedVersion": "2",
-            "x": 394.91925048828127,
-            "y": -1022.2766723632813,
-            "width": 0.0,
-            "height": 0.0
-        }
-    },
-    "m_Slots": [
-        {
-            "m_Id": "595f84cf98c64d5ba82b9f3b6ede0580"
-        }
-    ],
-    "synonyms": [],
-    "m_Precision": 0,
-    "m_PreviewExpanded": true,
-    "m_DismissedVersion": 0,
-    "m_PreviewMode": 0,
-    "m_CustomColors": {
-        "m_SerializableColors": []
-    },
-    "m_Property": {
-        "m_Id": "70894c078ced49788f26fb9c900eb67d"
-    }
-}
-
-{
-    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "b289520823ee454da0c4b9f1ab7bb0ef",
     "m_Id": 3,
@@ -2628,6 +2568,26 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.StickyNoteData",
+    "m_ObjectId": "d388ccee36184868b8b9b822006e83ab",
+    "m_Title": "samen voegen",
+    "m_Content": "het samen voegen van de 3 verschillende gradients om een skybox te creëren",
+    "m_TextSize": 0,
+    "m_Theme": 0,
+    "m_Position": {
+        "serializedVersion": "2",
+        "x": 2107.0,
+        "y": -294.0,
+        "width": 200.0,
+        "height": 100.0
+    },
+    "m_Group": {
+        "m_Id": ""
+    }
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
     "m_ObjectId": "d5b32155dfc745968215f6ba36ef92a3",
     "m_Id": 0,
@@ -2758,6 +2718,26 @@
         "e31": 0.0,
         "e32": 0.0,
         "e33": 1.0
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.StickyNoteData",
+    "m_ObjectId": "da0ba9e57b744591b8145429fbadba9f",
+    "m_Title": "Gradient",
+    "m_Content": "gradient voor de lucht kleur\n",
+    "m_TextSize": 0,
+    "m_Theme": 0,
+    "m_Position": {
+        "serializedVersion": "2",
+        "x": 398.0,
+        "y": -458.0,
+        "width": 200.0,
+        "height": 100.0
+    },
+    "m_Group": {
+        "m_Id": ""
     }
 }
 
@@ -3335,6 +3315,26 @@
     "m_RangeValues": {
         "x": 0.009999999776482582,
         "y": 50.0
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.StickyNoteData",
+    "m_ObjectId": "fc8141d28e6346d5803de1f0a44c49e5",
+    "m_Title": "kleur",
+    "m_Content": "maakt een variable voor de kleur van de lucht",
+    "m_TextSize": 0,
+    "m_Theme": 0,
+    "m_Position": {
+        "serializedVersion": "2",
+        "x": 735.0,
+        "y": -557.0,
+        "width": 80.0,
+        "height": 100.0
+    },
+    "m_Group": {
+        "m_Id": ""
     }
 }
 

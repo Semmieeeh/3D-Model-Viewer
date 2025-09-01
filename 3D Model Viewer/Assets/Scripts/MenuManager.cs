@@ -36,6 +36,7 @@ public class MenuController : MonoBehaviour
         mainAudioSource.PlayOneShot(mainAudioSource.clip);
     }
 
+    // sluit app af
     public void Quit()
     {
         CallSoundMenu();
