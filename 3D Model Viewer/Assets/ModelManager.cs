@@ -23,12 +23,17 @@ public class ModelManager : MonoBehaviour
 
     public void LoadModel(GameObject newModel)
     {
+        if(previousModel == newModel)
+        {
+            return;
+        }
         StartCoroutine(SwitchModelRoutine(newModel));
     }
 
     private IEnumerator SwitchModelRoutine(GameObject newModel)
     {
-      
+       
+
         if (previousModel != null)
         {
             yield return StartCoroutine(ScaleOverTime(previousModel, Vector3.one, Vector3.one * 0.01f, animationDuration));
