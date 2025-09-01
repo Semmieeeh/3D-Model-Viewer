@@ -86,7 +86,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   creatorName: Roel
-  info: Dit is een schild uit dee vikinf tijd met realistische textures
+  info: Dit is een schild uit de viking tijd met realistische textures
   vertexCount: 0
   faceCount: 0
   _ownMaterial: {fileID: 2100000, guid: 2b520b254858b1541b74b19233476940, type: 2}
