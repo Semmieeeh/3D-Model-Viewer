@@ -71,7 +71,7 @@ public class LightingHandler : MonoBehaviour
             holdHandler.OnHoldButton += () => _counterClockwiseButtonHeld = true;
             holdHandler.OnReleaseButton += () => _counterClockwiseButtonHeld = false;
         }
-
+        // Seet dag eerst active
         _skyboxMaterial.SetColor("_Sky_Color", _dayColorSkyBox);
         _skyboxMaterial.SetFloat("_starIntesity", 0);
         _skyboxMaterial.SetColor("_GroundColor",_groundColorDay);
@@ -79,12 +79,14 @@ public class LightingHandler : MonoBehaviour
 
     private void Update()
     {
-       
+     
+        // pak pivotpoint als leeg is
         if(_pivotPoint == null)
         {
             _pivotPoint = UIHandler.Instance.GetModel().transform;
         }
         _animatorButtonDay.SetBool("Activate", _isDay);
+        // f key voor shortcut dag/ nacht
         if (Input.GetKeyDown((KeyCode.F)) && !_isTransitioning)
         {
             SwitchDayNightMode();
@@ -95,13 +97,14 @@ public class LightingHandler : MonoBehaviour
         bool isRotating = isEKeyPressed || isQKeyPressed || _clockwiseButtonHeld || _counterClockwiseButtonHeld;
         if (isRotating && _turnAroundCoroutine == null && _pivotPoint != null)
         {
-           
+         
             float rotationSpeed = isEKeyPressed || _clockwiseButtonHeld ? _rotationSpeed : -_rotationSpeed;
             _turnAroundCoroutine = StartCoroutine(TurnAround(_lightSource.transform, _pointLight.transform, _pivotPoint.position, rotationSpeed));
             Debug.Log($"{(isEKeyPressed ? "E" : "Q")} key held: Starting rotation");
         }
         else if (!isRotating && _turnAroundCoroutine != null)
         {
+            // als je de button los laat  reset het de speed een maaakt het de couritine leeg
             StopCoroutine(_turnAroundCoroutine);
             _rotationSpeed = 20;
             _turnAroundCoroutine = null;
@@ -110,12 +113,17 @@ public class LightingHandler : MonoBehaviour
     }
 
 
-    #region Rotation Lights
+
+    #region Rotation Lightspeeeler z
+    // Deze Ienumerator zorg voor de rotatie van het licht voor zolang de user de knop ingedrukt houdt
     private IEnumerator TurnAround(Transform objToRotate, Transform pointLight, Vector3 pivotPoint, float rotationSpeed)
     {
+        UIHandler.Instance.CallSound();
         while (Input.GetKey(KeyCode.E) || Input.GetKey(KeyCode.Q) || _clockwiseButtonHeld || _counterClockwiseButtonHeld)
         {
-            if(rotationSpeed < 100)
+          
+            // zolang de rotatie speed onder 100 is voegt hij snelheid toe
+            if (rotationSpeed < 100)
             {
                 _rotationSpeed += 5f * Time.deltaTime;
             }
@@ -139,7 +147,8 @@ public class LightingHandler : MonoBehaviour
         _isTransitioning = true;
         _transisionTime = 0f;
         _transisionDuration = 2f;
-        // kiest welk kleur hij moet toepassen op de shader.
+        // kiest de kleur voor de skybox en Light sources.
+
         Color startColor = _isDay ? _nightColorNight : _dayColorLight;
         Color endColor = _isDay ? _dayColorLight : _nightColorNight;
         float startIntensity = _isDay ? _nightIntensity : _dayIntensity;
@@ -153,6 +162,7 @@ public class LightingHandler : MonoBehaviour
         float startStarsCount = _isDay ? 298 : 0;
         float endStarsCount = _isDay ? 0 : 298;
        
+        // over tijd verander de kleur
         while (_transisionTime < _transisionDuration)
         {
             _transisionTime += Time.deltaTime;
@@ -164,7 +174,7 @@ public class LightingHandler : MonoBehaviour
             _skyboxMaterial.SetColor("_GroundColor", Color.Lerp(startGroundColor,endGroundColor,t));
             yield return null;
         }
-
+        // zet eind kleur als kleur
         _lightSource.color = endColor;
         _lightSource.intensity = endIntensity;
         _isTransitioning = false;
@@ -172,9 +182,10 @@ public class LightingHandler : MonoBehaviour
    
     
 
+    // Toggle button dag nacht
     private void SwitchDayNightMode()
     {
-       
+        UIHandler.Instance.CallSound();
 
         if (!_isTransitioning)
         {

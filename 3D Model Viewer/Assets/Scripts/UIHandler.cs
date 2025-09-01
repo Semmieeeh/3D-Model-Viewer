@@ -4,22 +4,29 @@ using UnityEngine.UI;
 
 public class UIHandler : MonoBehaviour
 {
-    [SerializeField]private int _selectedModel;
+    [SerializeField] private int _selectedModel;
     [SerializeField] private GameObject[] _allModels;
- 
+
+    [Header("Chosen model")]
     [SerializeField] private GameObject _currentActivePrefab;
     [SerializeField] private GameObject _currentActiveModel;
+   
+    [Header("Materials")]
 
     [SerializeField] private Material _claymaterial;
     [SerializeField] private Material _unlit;
     [SerializeField] private Material _lit;
 
+    [Header("Material Buttons")]
 
     [SerializeField] private Button _clayMaterialButton;
     [SerializeField] private Button _UnlitMaterialButton;
     [SerializeField] private Button _litMaterialButton;
 
     [SerializeField]private Material _originalMaterial;
+
+    [Header("Audio")]
+
     [SerializeField] private AudioSource _audioSource;
     public static UIHandler Instance {  get; private set; }
     
@@ -55,15 +62,8 @@ public class UIHandler : MonoBehaviour
         }
     }
 
-    public GameObject GetModel()
-   {
-        if(_currentActiveModel != null)
-        {
-            return _currentActiveModel;
-        }
-        return null;
-   }
    
+    #region Material Switcher
     public void SetClayMaterial()
     {
         CallSound();
@@ -126,16 +126,30 @@ public class UIHandler : MonoBehaviour
        
         _originalMaterial = newmat;
     }
+    #endregion
+
+
+    #region SwitchModel
+    public GameObject GetModel()
+    {
+        if (_currentActiveModel != null)
+        {
+            return _currentActiveModel;
+        }
+        return null;
+    }
+
     public void SetCurrentModel(GameObject newmodel)
     {
-     
         _currentActiveModel = newmodel;
     }
+    #endregion 
 
     public void CallSound()
     {
         _audioSource.PlayOneShot(_audioSource.clip);
     }
+
     public void LoadPrevieusScene()
     {
         SceneManager.LoadScene(0);

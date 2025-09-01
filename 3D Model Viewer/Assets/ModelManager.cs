@@ -15,12 +15,13 @@ public class ModelManager : MonoBehaviour
     public TextMeshProUGUI verts;
     public TextMeshProUGUI generalInfo;
     
+
     private void Start()
     {
-       
        LoadModel(UIHandler.Instance.GetModel());
     }
 
+    // Load new model in if its not the same model else return
     public void LoadModel(GameObject newModel)
     {
         if (previousModel == newModel)
@@ -34,6 +35,8 @@ public class ModelManager : MonoBehaviour
         StartCoroutine(SwitchModelRoutine(newModel));
     }
 
+    // this Ienumerators calls the scale overtime ienumerator that  scales model to 0.1f before setting it inactive and sets new model active 
+    // and scales this one up from 0.01f to 1
     private IEnumerator SwitchModelRoutine(GameObject newModel)
     {
        
@@ -59,7 +62,9 @@ public class ModelManager : MonoBehaviour
         modelInfo = newModel.GetComponent<ModelInfo>();
         SetInfo(modelInfo);
     }
-
+   
+    
+    // this Ienumerator handlees the scaling of objects 
     private IEnumerator ScaleOverTime(GameObject target, Vector3 from, Vector3 to, float duration)
     {
         float elapsed = 0f;
@@ -74,6 +79,7 @@ public class ModelManager : MonoBehaviour
         target.transform.localScale = to;
     }
 
+    // Sets info for current Active Model
     private void SetInfo(ModelInfo model)
     {
         modelName.text = model.gameObject.name;
