@@ -17,8 +17,10 @@ public class ModelManager : MonoBehaviour
     
     private void Start()
     {
+       
        LoadModel(UIHandler.Instance.GetModel());
     }
+
     public void LoadModel(GameObject newModel)
     {
         StartCoroutine(SwitchModelRoutine(newModel));
@@ -26,24 +28,24 @@ public class ModelManager : MonoBehaviour
 
     private IEnumerator SwitchModelRoutine(GameObject newModel)
     {
-        // 1. Shrink and deactivate previous model
+      
         if (previousModel != null)
         {
             yield return StartCoroutine(ScaleOverTime(previousModel, Vector3.one, Vector3.one * 0.01f, animationDuration));
             previousModel.SetActive(false);
         }
 
-        // 2. Activate new model at tiny scale
+       
         newModel.transform.localScale = Vector3.one * 0.01f;
         newModel.SetActive(true);
         UIHandler.Instance.SetCurrentModel(newModel);
         UIHandler.Instance.SetOriginalMaterial(newModel.GetComponent<ModelInfo>()._ownMaterial);
         
         
-        // 3. Grow to full size
+      
         yield return StartCoroutine(ScaleOverTime(newModel, Vector3.one * 0.01f, Vector3.one, animationDuration));
 
-        // 4. Update references
+        
         previousModel = newModel;
         modelInfo = newModel.GetComponent<ModelInfo>();
         SetInfo(modelInfo);
@@ -54,13 +56,13 @@ public class ModelManager : MonoBehaviour
         float elapsed = 0f;
         while (elapsed < duration)
         {
-            if (target == null) yield break; // safety check
+            if (target == null) yield break;
 
             target.transform.localScale = Vector3.Lerp(from, to, elapsed / duration);
             elapsed += Time.deltaTime;
             yield return null;
         }
-        target.transform.localScale = to; // ensure exact final size
+        target.transform.localScale = to;
     }
 
     private void SetInfo(ModelInfo model)

@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dcff7336415416d419f9a9423f4e4935, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dcff7336415416d419f9a9423f4e4935, type: 3}
       propertyPath: m_LocalRotation.x
@@ -30,11 +30,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dcff7336415416d419f9a9423f4e4935, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dcff7336415416d419f9a9423f4e4935, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dcff7336415416d419f9a9423f4e4935, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -42,7 +42,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dcff7336415416d419f9a9423f4e4935, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dcff7336415416d419f9a9423f4e4935, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -56,8 +56,37 @@ PrefabInstance:
       propertyPath: m_Name
       value: Viking Shield
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: dcff7336415416d419f9a9423f4e4935, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: dcff7336415416d419f9a9423f4e4935, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4933156657064737700}
   m_SourcePrefab: {fileID: 100100000, guid: dcff7336415416d419f9a9423f4e4935, type: 3}
+--- !u!1 &6493524307620704862 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: dcff7336415416d419f9a9423f4e4935, type: 3}
+  m_PrefabInstance: {fileID: 6259097646667239183}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4933156657064737700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6493524307620704862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2706bc6625b938469e2577f0dd8261e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  creatorName: Roel
+  info: Dit is een schild uit dee vikinf tijd met realistische textures
+  vertexCount: 0
+  faceCount: 0
+  _ownMaterial: {fileID: 2100000, guid: 2b520b254858b1541b74b19233476940, type: 2}
