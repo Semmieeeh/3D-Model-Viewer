@@ -7,6 +7,7 @@ public class MenuController : MonoBehaviour
     public GameObject[] panels;
 
     public GameObject mainMenuPanel;
+    public AudioSource mainAudioSource;
 
     void Start()
     {
@@ -17,6 +18,7 @@ public class MenuController : MonoBehaviour
     // Deze funtie zet alle panels uit en activeert de panel die je aan wilt hebben
     public void SetActivePanel(GameObject panelToActivate)
     {
+        CallSoundMenu();
         // Zet alle panels uit
         foreach (GameObject panel in panels)
         {
@@ -29,9 +31,14 @@ public class MenuController : MonoBehaviour
             panelToActivate.SetActive(true);
         }
     }
+    public void CallSoundMenu()
+    {
+        mainAudioSource.PlayOneShot(mainAudioSource.clip);
+    }
 
     public void Quit()
     {
+        CallSoundMenu();
         Application.Quit();
     }
 }

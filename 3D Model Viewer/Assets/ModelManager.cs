@@ -23,9 +23,13 @@ public class ModelManager : MonoBehaviour
 
     public void LoadModel(GameObject newModel)
     {
-        if(previousModel == newModel)
+        if (previousModel == newModel)
         {
             return;
+        }
+        else
+        {
+            UIHandler.Instance.CallSound();
         }
         StartCoroutine(SwitchModelRoutine(newModel));
     }

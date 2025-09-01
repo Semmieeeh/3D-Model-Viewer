@@ -437,7 +437,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toolTipText: Terug Naar Menu
-  waitTime: 2
+  waitTime: 0.1
   tipHeightOfset: -2
   tipWidthOfset: 0
   toolTipManager: {fileID: 0}
@@ -613,6 +613,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1984784240641524117, guid: a7e8569cdaf99aa48a14986b6ea8e549, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3958541150101905308, guid: a7e8569cdaf99aa48a14986b6ea8e549, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3958541150101905308, guid: a7e8569cdaf99aa48a14986b6ea8e549, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3958541150101905308, guid: a7e8569cdaf99aa48a14986b6ea8e549, type: 3}
+      propertyPath: m_enableAutoSizing
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5702217573101142835, guid: a7e8569cdaf99aa48a14986b6ea8e549, type: 3}
@@ -1278,8 +1290,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a1d5acd706c8ed42b8d9605665738b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toolTipText: "Licht Draien \nNaar Rechts"
-  waitTime: 2
+  toolTipText: "Licht Draaien \nNaar Rechts"
+  waitTime: 0.1
   tipHeightOfset: -2
   tipWidthOfset: 0
   toolTipManager: {fileID: 0}
@@ -1436,9 +1448,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a1d5acd706c8ed42b8d9605665738b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toolTipText: Basis kleur
-  waitTime: 2
-  tipHeightOfset: -2
+  toolTipText: Klei Renderer
+  waitTime: 0.1
+  tipHeightOfset: -3
   tipWidthOfset: 0
   toolTipManager: {fileID: 0}
 --- !u!224 &2053326494425089648
@@ -1647,9 +1659,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a1d5acd706c8ed42b8d9605665738b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toolTipText: Geen Schaduwen
-  waitTime: 2
-  tipHeightOfset: -2
+  toolTipText: 'Basis Kleur
+
+'
+  waitTime: 0.1
+  tipHeightOfset: -3
   tipWidthOfset: 0
   toolTipManager: {fileID: 0}
 --- !u!114 &2968375968723964289 stripped
@@ -1675,8 +1689,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a1d5acd706c8ed42b8d9605665738b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toolTipText: "Licht Draien \nNaar Links"
-  waitTime: 2
+  toolTipText: "Licht Draaien \nNaar Links"
+  waitTime: 0.1
   tipHeightOfset: -2
   tipWidthOfset: 0
   toolTipManager: {fileID: 0}
@@ -1703,9 +1717,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a1d5acd706c8ed42b8d9605665738b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toolTipText: Met Schaduwen
-  waitTime: 2
-  tipHeightOfset: -2
+  toolTipText: Belicht
+  waitTime: 0.1
+  tipHeightOfset: -3
   tipWidthOfset: 0
   toolTipManager: {fileID: 0}
 --- !u!222 &4516886758452916026
@@ -2371,7 +2385,7 @@ MonoBehaviour:
   toolTipText: 'Wisselen Tussen
 
     Dag en Nacht'
-  waitTime: 2
+  waitTime: 0.1
   tipHeightOfset: -2
   tipWidthOfset: 0
   toolTipManager: {fileID: 0}
@@ -2481,6 +2495,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2053326494425089648}
     m_Modifications:
+    - target: {fileID: 1080365413629395774, guid: e2e888336ddf1cf47a0b1636503f340d, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1101642104224748623, guid: e2e888336ddf1cf47a0b1636503f340d, type: 3}
       propertyPath: m_Name
       value: Top UI
@@ -2564,6 +2582,34 @@ PrefabInstance:
     - target: {fileID: 3063704296049061713, guid: e2e888336ddf1cf47a0b1636503f340d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3279383725543341892, guid: e2e888336ddf1cf47a0b1636503f340d, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3760322301603325435, guid: e2e888336ddf1cf47a0b1636503f340d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3760322301603325435, guid: e2e888336ddf1cf47a0b1636503f340d, type: 3}
+      propertyPath: m_fontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 3760322301603325435, guid: e2e888336ddf1cf47a0b1636503f340d, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4415786179339910635, guid: e2e888336ddf1cf47a0b1636503f340d, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239478523724288469, guid: e2e888336ddf1cf47a0b1636503f340d, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7395506278588557411, guid: e2e888336ddf1cf47a0b1636503f340d, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8545573983742942116, guid: e2e888336ddf1cf47a0b1636503f340d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size

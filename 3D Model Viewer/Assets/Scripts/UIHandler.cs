@@ -20,6 +20,7 @@ public class UIHandler : MonoBehaviour
     [SerializeField] private Button _litMaterialButton;
 
     [SerializeField]private Material _originalMaterial;
+    [SerializeField] private AudioSource _audioSource;
     public static UIHandler Instance {  get; private set; }
     
     void Awake()
@@ -65,14 +66,17 @@ public class UIHandler : MonoBehaviour
    
     public void SetClayMaterial()
     {
-       SetMaterial(_claymaterial,true,Color.gray);
+        CallSound();
+        SetMaterial(_claymaterial,true,Color.gray);
     }
     public void SetUnlitMaterial()
     {
-      SetMaterial(_unlit,true,Color.white);
+        CallSound();
+        SetMaterial(_unlit,true,Color.white);
     }
     public void SetLitMaterial()
     {
+        CallSound();
         SetMaterial(_lit,true,Color.white);
         if(_originalMaterial != null && _originalMaterial.shader.name.Contains("Lit"))
         {
@@ -119,12 +123,18 @@ public class UIHandler : MonoBehaviour
     }
     public void SetOriginalMaterial(Material newmat)
     {
+       
         _originalMaterial = newmat;
     }
     public void SetCurrentModel(GameObject newmodel)
     {
-        
+     
         _currentActiveModel = newmodel;
+    }
+
+    public void CallSound()
+    {
+        _audioSource.PlayOneShot(_audioSource.clip);
     }
     public void LoadPrevieusScene()
     {
