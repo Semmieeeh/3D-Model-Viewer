@@ -13,11 +13,12 @@ public class CursorBehaviour : MonoBehaviour
     private float currentRotation = 0f;
     private float rotationSpeed = 20f;
     private float maxRotation = 25f;
-    private float movementThreshold = 2f;
+    public float movementThreshold;
 
     private Image image;
     void Start()
     {
+        movementThreshold = 400f;
         Cursor.visible = false;
         // Add an image to this GameObject if it doesn't exist
         image = GetComponent<Image>();
@@ -74,10 +75,14 @@ public class CursorBehaviour : MonoBehaviour
         Vector3 mouseDelta = Input.mousePosition - lastMousePosition;
         float deltaX = mouseDelta.x;
 
-        // Only rotate if horizontal movement is above threshold
-        if (Mathf.Abs(deltaX) > movementThreshold)
+        // Convert to "pixels per second"
+        float deltaXPerSecond = deltaX / Time.deltaTime;
+
+        // Only rotate if horizontal movement speed is above threshold
+        if (Mathf.Abs(deltaXPerSecond) > movementThreshold)
         {
-            targetRotation = Mathf.Clamp(deltaX, -1f, 1f) * maxRotation;
+            // Clamp to -1 / 1 based on direction, then scale to maxRotation
+            targetRotation = Mathf.Clamp(deltaXPerSecond, -1f, 1f) * maxRotation;
         }
         else
         {
@@ -90,5 +95,6 @@ public class CursorBehaviour : MonoBehaviour
 
         lastMousePosition = Input.mousePosition;
     }
+
 
 }

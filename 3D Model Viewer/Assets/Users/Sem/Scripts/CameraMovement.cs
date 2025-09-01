@@ -32,7 +32,7 @@ public class CameraMovement : MonoBehaviour
     private float currentXRotation;
     private bool resetting = false;
 
-    // Reset interpolation
+    // Reset position and rotation
     private float resetTimer = 0f;
     private Vector3 resetStartPivotPos;
     private Quaternion resetStartPivotRot;
@@ -74,7 +74,7 @@ public class CameraMovement : MonoBehaviour
 
             resetStartPivotPos = pivot.position;
             resetStartPivotRot = pivot.rotation;
-            resetStartZoom = transform.localPosition.magnitude; // capture zoom start
+            resetStartZoom = transform.localPosition.magnitude;
 
             rotationVelocity = Vector2.zero;
             panVelocity = Vector2.zero;
@@ -82,12 +82,13 @@ public class CameraMovement : MonoBehaviour
     }
     public void MenuReset()
     {
+
         resetting = true;
         resetTimer = 0f;
 
         resetStartPivotPos = pivot.position;
         resetStartPivotRot = pivot.rotation;
-        resetStartZoom = transform.localPosition.magnitude; // capture zoom start
+        resetStartZoom = transform.localPosition.magnitude;
 
         rotationVelocity = Vector2.zero;
         panVelocity = Vector2.zero;
@@ -99,7 +100,7 @@ public class CameraMovement : MonoBehaviour
         float smoothT = t * t * (3f - 2f * t); // smoothstep
 
         // Interpolate positions and rotations
-        pivot.position = Vector3.Lerp(resetStartPivotPos, startPivotPos, smoothT);
+        pivot.position = Vector3.Slerp(resetStartPivotPos, startPivotPos, smoothT);
         pivot.rotation = Quaternion.Slerp(resetStartPivotRot, startPivotRot, smoothT);
 
         // Interpolate zoom
@@ -160,7 +161,7 @@ public class CameraMovement : MonoBehaviour
 
             if (arrowPressed)
             {
-                // compounding grow multiplier
+                // compounding multiplier
                 if(rotationMultiplier <25)
                 {
                     rotationMultiplier *= 1f + (1f * Time.deltaTime);
@@ -207,7 +208,7 @@ public class CameraMovement : MonoBehaviour
         if (Input.GetMouseButton(1) && canPan == true || Input.GetMouseButton(2) && canPan == true)
         {
             float distance = Mathf.Max(Vector3.Distance(transform.position, pivot.position), 1f);
-
+            //ik haat programmeren
             panVelocity.x = Input.GetAxis("Mouse X") * panSpeed * transform.localPosition.z * distance;
             panVelocity.y = Input.GetAxis("Mouse Y") * panSpeed * transform.localPosition.z * distance;
         }
@@ -234,6 +235,7 @@ public class CameraMovement : MonoBehaviour
     float scroll;
     private void Zoom()
     {
+        //check if hovering over UI element
         if (EventSystem.current.IsPointerOverGameObject())
         {
             canZoom = false;
