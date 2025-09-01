@@ -31,6 +31,7 @@ public class UIHandler : MonoBehaviour
     public static UIHandler Instance {  get; private set; }
     
     void Awake()
+        // We gebruiken hier een singleton pattern waardoor we dit script op meerdere plekken kan aanroepen zonder reference
     {
         if (Instance != null && Instance != this)
         {
@@ -38,7 +39,7 @@ public class UIHandler : MonoBehaviour
             return;
         }
         Instance = this;
-        
+        // halen opgslagen model om als eerste in te laden
         _selectedModel = PlayerPrefs.GetInt("SelectedImageIndex");
         _currentActiveModel = _allModels[_selectedModel].gameObject;
 
@@ -46,6 +47,7 @@ public class UIHandler : MonoBehaviour
 
     private void Start()
     {
+        // material subscriben tot action
         _clayMaterialButton.onClick.AddListener(SetClayMaterial);
         _litMaterialButton.onClick.AddListener(SetLitMaterial);
         _UnlitMaterialButton.onClick.AddListener(SetUnlitMaterial);
@@ -56,13 +58,15 @@ public class UIHandler : MonoBehaviour
 
     private void Update()
     {
+        // Check of _original material niet leg is anders vul in
         if(_originalMaterial == null)
         {
             _originalMaterial = _currentActiveModel.GetComponent<Renderer>().material;
         }
     }
 
-   
+
+   // Button functions
     #region Material Switcher
     public void SetClayMaterial()
     {
@@ -87,7 +91,7 @@ public class UIHandler : MonoBehaviour
             }
         }
     }
-    
+    // Set material van de gekoze button.
     private void SetMaterial(Material material, bool useMaterial, Color color)
     {
         if(_currentActiveModel != null)
@@ -121,6 +125,7 @@ public class UIHandler : MonoBehaviour
             }
         }
     }
+    //  Sett original material
     public void SetOriginalMaterial(Material newmat)
     {
        

@@ -54,7 +54,7 @@ public class LightingHandler : MonoBehaviour
 
     private void Start()
     {
-        //subscribing handlers and skybox set to day
+        //subscribing handlers  voor button dag nacht
         if (_toggleButtonDayNight != null)
         {
             _toggleButtonDayNight.onClick.AddListener(SwitchDayNightMode);
@@ -71,7 +71,7 @@ public class LightingHandler : MonoBehaviour
             holdHandler.OnHoldButton += () => _counterClockwiseButtonHeld = true;
             holdHandler.OnReleaseButton += () => _counterClockwiseButtonHeld = false;
         }
-        // Seet dag eerst active
+        // Set dag eerst active
         _skyboxMaterial.SetColor("_Sky_Color", _dayColorSkyBox);
         _skyboxMaterial.SetFloat("_starIntesity", 0);
         _skyboxMaterial.SetColor("_GroundColor",_groundColorDay);

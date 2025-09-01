@@ -15,15 +15,13 @@ public class ButtonHoldHandler : MonoBehaviour,IPointerDownHandler,IPointerUpHan
     {
         _isHeld = true;
         OnHoldButton?.Invoke();
-      
-        Debug.Log($"{gameObject.name} + pressed Holding");
-
+   
     }
     public void OnPointerUp(PointerEventData eventData)
     {
         _isHeld = false;
         OnReleaseButton?.Invoke();
-        Debug.Log($"{gameObject.name} + pressed Released");
+        
     }
     void Update()
     {
