@@ -580,7 +580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toolTipText: Model Selcetie
-  waitTime: 2
+  waitTime: 0.1
   tipHeightOfset: 1
   tipWidthOfset: 1
   toolTipManager: {fileID: 660270940}
@@ -1002,7 +1002,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toolTipText: Infomatie Over Model
-  waitTime: 2
+  waitTime: 0.1
   tipHeightOfset: 1
   tipWidthOfset: -1
   toolTipManager: {fileID: 0}
@@ -1098,7 +1098,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toolTipText: Centreren Op Model
-  waitTime: 2
+  waitTime: 0.1
   tipHeightOfset: 2
   tipWidthOfset: 0
   toolTipManager: {fileID: 0}
@@ -2651,7 +2651,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3181205861547526252, guid: 65dd9ea36138ea246a48cad8f44a4269, type: 3}
       propertyPath: m_Name
-      value: USPS-S
+      value: USP-S
       objectReference: {fileID: 0}
     - target: {fileID: 3181205861547526252, guid: 65dd9ea36138ea246a48cad8f44a4269, type: 3}
       propertyPath: m_IsActive
