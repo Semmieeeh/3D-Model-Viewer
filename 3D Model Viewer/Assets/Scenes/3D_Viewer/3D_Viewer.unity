@@ -1002,6 +1002,7 @@ MonoBehaviour:
   _UnlitMaterialButton: {fileID: 2598235427382557748}
   _litMaterialButton: {fileID: 4303251695751544529}
   _originalMaterial: {fileID: 0}
+  _audioSource: {fileID: 0}
 --- !u!4 &1729181363
 Transform:
   m_ObjectHideFlags: 0
@@ -1493,6 +1494,7 @@ MonoBehaviour:
   pointerSprite: {fileID: 21300000, guid: 80b4a575361a6b649b5b73f68b050fcd, type: 3}
   openHandSprite: {fileID: 21300000, guid: a0999791f56f2db47b97f795e98ef5e1, type: 3}
   grabbingHandSprite: {fileID: 21300000, guid: 48f5240360bc18948876d5624e004d25, type: 3}
+  movementThreshold: 0
 --- !u!114 &2186989547641643339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1559,7 +1561,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 155604739526224727, guid: 46936c9b34bf6424ba0f28d0fbbf710c, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 420
+      value: 540
       objectReference: {fileID: 0}
     - target: {fileID: 155604739526224727, guid: 46936c9b34bf6424ba0f28d0fbbf710c, type: 3}
       propertyPath: m_LocalPosition.x
