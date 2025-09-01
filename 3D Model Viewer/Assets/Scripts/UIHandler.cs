@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class UIHandler : MonoBehaviour
 {
-    private int _selectedModel;
+    [SerializeField]private int _selectedModel;
     [SerializeField] private GameObject[] _allModels;
  
     [SerializeField] private GameObject _currentActivePrefab;
@@ -30,12 +30,10 @@ public class UIHandler : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
-
         
         _selectedModel = PlayerPrefs.GetInt("SelectedImageIndex");
         _currentActiveModel = _allModels[_selectedModel].gameObject;
-       
+
     }
 
     private void Start()
@@ -43,6 +41,9 @@ public class UIHandler : MonoBehaviour
         _clayMaterialButton.onClick.AddListener(SetClayMaterial);
         _litMaterialButton.onClick.AddListener(SetLitMaterial);
         _UnlitMaterialButton.onClick.AddListener(SetUnlitMaterial);
+
+       
+
     }
 
     private void Update()
@@ -55,7 +56,11 @@ public class UIHandler : MonoBehaviour
 
     public GameObject GetModel()
    {
-        return _currentActiveModel;
+        if(_currentActiveModel != null)
+        {
+            return _currentActiveModel;
+        }
+        return null;
    }
    
     public void SetClayMaterial()
