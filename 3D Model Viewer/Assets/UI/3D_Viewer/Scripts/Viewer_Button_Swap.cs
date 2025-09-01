@@ -11,16 +11,16 @@ public class Viewer_Button_Swap : MonoBehaviour
     public AnimationClip closeAni;
     private Image curImage;
     public bool uIActive;
+
+    // Start voor het op vragen van de image waar de sprite in aangepased moet worden.
     void Start()
     {
         curImage = buttonImage.GetComponent<Image>();
         uIActive = false;
     }
-    void Update()
-    {
-        
-    }
 
+    // Het wisselen van de functie en sprite van de knop.
+    // Start ook de aniematie voor het openen/suiten van het menu.
     public void ButtonSwap () {
         if (uIActive == true) {
             uIElementAni.clip = closeAni;
@@ -34,12 +34,5 @@ public class Viewer_Button_Swap : MonoBehaviour
             curImage.sprite = close;
             uIActive = true;
         }       
-    }
-
-    public void ButtonActif () {
-        //buttonImage.GetComponent<Button>().enabled = true;
-    }
-    public void ButtonInActif () {
-        //buttonImage.GetComponent<Button> ().enabled = false;
     }
 }
