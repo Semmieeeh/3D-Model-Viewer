@@ -1511,7 +1511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a1d5acd706c8ed42b8d9605665738b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toolTipText: Klei Renderer
+  toolTipText: Clay Render
   waitTime: 0.1
   tipHeightOfset: -3
   tipWidthOfset: 0
@@ -1681,6 +1681,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Draai de camera
       objectReference: {fileID: 0}
+    - target: {fileID: 4676922098259630176, guid: 46936c9b34bf6424ba0f28d0fbbf710c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -31.9
+      objectReference: {fileID: 0}
     - target: {fileID: 5023421281699376092, guid: 46936c9b34bf6424ba0f28d0fbbf710c, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 187
@@ -1731,9 +1735,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a1d5acd706c8ed42b8d9605665738b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toolTipText: 'Basis Kleur
-
-'
+  toolTipText: Unlit
   waitTime: 0.1
   tipHeightOfset: -3
   tipWidthOfset: 0
@@ -1789,7 +1791,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a1d5acd706c8ed42b8d9605665738b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toolTipText: Belicht
+  toolTipText: Orgineel Materiaal
   waitTime: 0.1
   tipHeightOfset: -3
   tipWidthOfset: 0
